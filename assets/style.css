@@ -24,10 +24,34 @@ h1 {
     font-size: 48px;
   }
 
-  main {
+nav {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap; 
     justify-content: space-between;
+    background-color: rgb(59, 59, 59);
+    color: white;
+}
+
+main {
+    background-color: lightblue;
   }
 
+#game-menu {
+    font-size: 20px;
+    padding: 10px;
+
+}
+
+#timer {
+    font-size: 20px;
+    padding: 10px;
+}
+
+#quiz-area {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: center;
+    border: 1px solid black;
+}
