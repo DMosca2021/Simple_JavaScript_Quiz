@@ -81,7 +81,7 @@ nav {
     display: block;
   }
 
-#dropdown-content a:hover {background-color: #ddd;}
+#drop-content a:hover {background-color: #ddd;}
 
 #game-menu:hover #drop-content {display: block;}
   
@@ -107,4 +107,5 @@ main {
     max-width: 500px;
     max-height: 500px;
     padding: 25px;
+    margin: 50px;
 }
