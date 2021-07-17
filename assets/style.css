@@ -1,9 +1,11 @@
+/* Universal selector */
 * {
     margin:0;
     padding:0;
     box-sizing: border-box;
   }
 
+/* Styling for welcome text and start button */
 header {
     display: flex;
     flex-direction: column;
@@ -24,6 +26,19 @@ h1 {
     font-size: 48px;
   }
 
+#start-btn {
+    height: 40px;
+    width: 80px;
+    background-color: lightgreen;
+    color: black;
+    font-weight: bold;
+    border-style: none;
+    border-radius: 5px;
+    margin-left: 5px;
+    border-style: inset;
+}
+
+
 nav {
     display: flex;
     flex-direction: row;
@@ -33,9 +48,7 @@ nav {
     color: white;
 }
 
-main {
-    background-color: lightblue;
-  }
+/* This is the dropdown menu styling */
 
 #game-menu {
     font-size: 20px;
@@ -48,10 +61,19 @@ main {
     padding: 10px;
 }
 
+/* Styling for main area where questions and answers appear */
+
+main {
+    background-color: lightblue;
+}
 #quiz-area {
+    font-size: 40px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap; 
     justify-content: center;
     border: 1px solid black;
+    max-width: 500px;
+    max-height: 500px;
+    padding: 25px;
 }
