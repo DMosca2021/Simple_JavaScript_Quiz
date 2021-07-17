@@ -5,8 +5,8 @@
 
 // GIVEN I am taking a code quiz
 // WHEN I click the start button
-// THEN a timer starts and I am presented with a question
-// WHEN I answer a question
+// THEN a timer starts and I am presented with a question ---- start with 10 questions, 4 multiple choice each.
+// WHEN I answer a question ------- reuse 10 correct answers over to complete multiple choices 
 // THEN I am presented with another question
 // WHEN I answer a question incorrectly
 // THEN time is subtracted from the clock
@@ -35,3 +35,5 @@
 // add at least 2 additional question arrays for different difficulties easy med hard
 // create new q/a arrays to incorporate HTML and CSS fundamentals
 // make high score only include top 5 highest scores, add date stamp
+// add completed and incomplete quiz counter to high scores 
+// maybe bonus questions for more time/higher score 
