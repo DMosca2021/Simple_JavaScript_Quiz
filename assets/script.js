@@ -45,9 +45,51 @@ let correctAns = document.querySelector(".correct-answer");
 let incorrectAns = document.querySelector(".incorrect-answer");
 
 
-let chosenAnswer = "";
+// let chosenAnswer = "";  not sure if i need this 
 let correctCount = 0;
 let incorrectCount = 0;
 let highscore = 0;
 let timer;
 let timerCount;
+
+// questions array 
+let questions = [
+    {
+        question: "What is JavaScript",
+        answer: "I don't know.",
+        choice1: "I don't know.",
+        choice2: "Type of Coffee.",
+        choice3: "I know but I'm not telling",
+        choice4: "Where are we?",
+    }
+    {
+        question: "What is HTML",
+        answer: "Type of programming language.",
+        choice1: "I don't know.",
+        choice2: "Type of programming language.",
+        choice3: "I know but I'm not telling",
+        choice4: "Where are we?",
+    }
+    {
+        question: "What is CSS",
+        answer: "The Style.",
+        choice1: "I don't know.",
+        choice2: "The Style.",
+        choice3: "I know but I'm not telling",
+        choice4: "Where are we?",
+    }
+    {
+        question: "What is JQuery",
+        answer: "Shorthand JavaScript",
+        choice1: "I don't know.",
+        choice2: "Shorthand JavaScript",
+        choice3: "I know but I'm not telling",
+        choice4: "Where are we?",
+    }
+]
+
+// index of the starting question 
+let firstQuestion = 0;
+
+// index of last question
+const lastQuestion = questions.length - 1;
