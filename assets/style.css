@@ -26,7 +26,7 @@ h1 {
     font-size: 48px;
   }
 
-#start-btn {
+.start-btn {
     height: 40px;
     width: 80px;
     background-color: lightgreen;
@@ -50,14 +50,14 @@ nav {
 
 /* This is the dropdown menu styling */
 
-#game-menu {
+.game-menu {
     font-size: 20px;
     padding: 10px;
     position: relative;
     display: inline-block;
 }
 
-#drop-menu {
+.drop-menu {
     background-color: #04AA6D;
     color: white;
     padding: 16px;
@@ -65,7 +65,7 @@ nav {
     border: none;
   }
 
-#drop-content {
+.drop-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -74,20 +74,20 @@ nav {
     z-index: 1;
 }
 
-#drop-content a {
+.drop-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
   }
 
-#drop-content a:hover {background-color: #ddd;}
+.drop-content a:hover {background-color: #ddd;}
 
-#game-menu:hover #drop-content {display: block;}
+.game-menu:hover .drop-content {display: block;}
   
-#game-menu:hover #drop-menu {background-color: #3e8e41;}
+.game-menu:hover .drop-menu {background-color: #3e8e41;}
 
-#timer {
+.timer {
     font-size: 20px;
     padding: 10px;
 }
@@ -97,7 +97,7 @@ nav {
 main {
     background-color: lightblue;
 }
-#quiz-area {
+.quiz-area {
     font-size: 40px;
     display: flex;
     flex-direction: row;

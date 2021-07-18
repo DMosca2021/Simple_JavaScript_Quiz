@@ -37,3 +37,17 @@
 // make high score only include top 5 highest scores, add date stamp
 // add completed and incomplete quiz counter to high scores 
 // maybe bonus questions for more time/higher score 
+
+let quizArea = document.querySelector(".quiz-area");
+let quizTimer = document.querySelector(".quiz-timer");
+let startBtn = document.querySelector(".start-btn");
+let correctAns = document.querySelector(".correct-answer");
+let incorrectAns = document.querySelector(".incorrect-answer");
+
+
+let chosenAnswer = "";
+let correctCount = 0;
+let incorrectCount = 0;
+let highscore = 0;
+let timer;
+let timerCount;
