@@ -38,14 +38,18 @@
 // add completed and incomplete quiz counter to high scores 
 // maybe bonus questions for more time/higher score 
 
+// ***i need check boxes for answers and submit button to start answer check function ---> and next Q
+
+
 let quizArea = document.querySelector(".quiz-area");
 let quizTimer = document.querySelector(".quiz-timer");
 let startBtn = document.querySelector(".start-btn");
 let correctAns = document.querySelector(".correct-answer");
 let incorrectAns = document.querySelector(".incorrect-answer");
+let qDisplay = document.querySelector("#question");
+let aDisplay = document.querySelector("#answer");
 
-
-// let chosenAnswer = "";  not sure if i need this 
+let chosenQuestion = ""; 
 let correctCount = 0;
 let incorrectCount = 0;
 let highscore = 0;
@@ -55,41 +59,145 @@ let timerCount;
 // questions array 
 let questions = [
     {
-        question: "What is JavaScript",
-        answer: "I don't know.",
-        choice1: "I don't know.",
-        choice2: "Type of Coffee.",
-        choice3: "I know but I'm not telling",
-        choice4: "Where are we?",
+        question1: "What is JavaScript",
+    },{
+        question2: "What is HTML",
+    },{
+        question3: "What is CSS",
+    },{
+        question4: "What is JQuery",
     }
+]
+console.log(questions[0])
+console.log(questions.length)
+    // {
+    //     question: "What is JavaScript",
+    //     choice1: "I don't know.",
+    //     choice2: "Type of Coffee.",
+    //     choice3: "I know but I'm not telling",
+    //     choice4: "Where are we?",
+    // },{
+    //     question: "What is HTML",
+    //     choice1: "I don't know.",
+    //     choice2: "Type of programming language.",
+    //     choice3: "I know but I'm not telling",
+    //     choice4: "Where are we?",
+    // },{
+    //     question: "What is CSS",
+    //     choice1: "I don't know.",
+    //     choice2: "The Style.",
+    //     choice3: "I know but I'm not telling",
+    //     choice4: "Where are we?",
+    // },{
+    //     question: "What is JQuery",
+    //     choice1: "I don't know.",
+    //     choice2: "Shorthand JavaScript",
+    //     choice3: "I know but I'm not telling",
+    //     choice4: "Where are we?",
+    // }
+
+let answers = [
     {
-        question: "What is HTML",
-        answer: "Type of programming language.",
-        choice1: "I don't know.",
-        choice2: "Type of programming language.",
-        choice3: "I know but I'm not telling",
-        choice4: "Where are we?",
-    }
-    {
-        question: "What is CSS",
-        answer: "The Style.",
-        choice1: "I don't know.",
-        choice2: "The Style.",
-        choice3: "I know but I'm not telling",
-        choice4: "Where are we?",
-    }
-    {
-        question: "What is JQuery",
-        answer: "Shorthand JavaScript",
-        choice1: "I don't know.",
-        choice2: "Shorthand JavaScript",
-        choice3: "I know but I'm not telling",
-        choice4: "Where are we?",
+        answer1: "I don't know.",
+    },{
+        answer2: "Type of programming language.",
+    },{
+        answer3: "The Style.",
+    },{
+        answer4: "Shorthand JavaScript",
     }
 ]
 
 // index of the starting question 
-let firstQuestion = 0;
+// let firstQuestion = 0;
 
 // index of last question
-const lastQuestion = questions.length - 1;
+// const lastQuestion = questions.length - 1;
+
+// The init function is called when the page loads 
+function init() {
+    getCorrect();
+    getIncorrect();
+}
+
+// The startQuiz function is called when the start button is clicked
+function startQuiz() {
+    isWin = false;
+    timerCount = 300;
+    // Prevents start button from being clicked when round is in progress
+    startBtn.disabled = true;
+    renderQuiz()
+    startTimer()
+}
+
+// -----------CHANGE THIS TO COLLECT CORRECT AND INCORRECT ANSWERS------------
+// The winGame function is called when the win condition is met
+// function winGame() {
+//     wordBlank.textContent = "YOU WON!!!🏆 ";
+//     winCounter++
+//     startButton.disabled = false;
+//     setWins()
+// }
+  
+  // The loseGame function is called when timer reaches 0
+//   function loseGame() {
+//     wordBlank.textContent = "GAME OVER";
+//     loseCounter++
+//     startButton.disabled = false;
+//     setLosses()
+// }
+// ---------------------------------------------------------------------------
+
+// The setTimer function starts and stops the timer and triggers winGame() and loseGame()
+function startTimer() {
+    // Sets timer
+    timer = setInterval(function() {
+      timerCount--;
+      quizTimer.textContent = timerCount;
+      if (timerCount >= 0) {
+        // Tests if win condition is met
+        if (isWin && timerCount > 0) {
+          // Clears interval and stops timer
+          clearInterval(timer);
+        //   winGame();  ----> CHANGE THIS TO STORE REMAINING TIME AS HIGHSCORE
+        }
+      }
+      // Tests if time has run out
+      if (timerCount === 0) {
+        // Clears interval
+        clearInterval(timer);
+        // loseGame();  -----> CHANGE THIS TO END/FAIL THE QUIZ 
+      }
+    }, 1000);
+}
+
+// Creates quiz on screen
+function renderQuiz() {
+    // Randomly picks question from question array
+    chosenQuestion = questions[Math.floor(Math.random() * questions.length)];
+    console.log(chosenQuestion);
+    // lettersInChosenWord = chosenWord.split("");
+    // numBlanks = lettersInChosenWord.length;
+    // blanksLetters = []
+    // Uses loop to push blanks to blankLetters array
+    // for (var i = 0; i < numBlanks; i++) {
+    //   blanksLetters.push("_");
+    // }
+    // Converts blankLetters array into a string and renders it on the screen
+    qDisplay.textContent = chosenQuestion
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+startBtn.addEventListener("click", startQuiz);
