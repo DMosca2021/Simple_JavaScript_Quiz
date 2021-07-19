@@ -49,52 +49,34 @@ let submitBtn = document.querySelector(".submit-btn")
 // let incorCount = document.querySelector(".incorrect-answer"); ---> for high score page
 let qDisplay = document.querySelector("#question");
 let aDisplay = document.querySelector("#answer");
+let addAnswer = document.createElement("ul");
 
-let chosenQuestion = ""; 
+// let chosenQuestion = ""; 
 let correctCount = 0;
 let incorrectCount = 0;
 let highscore = 0;
 let timer;
 let timerCount;
 
+let questionIndex = 0;
+
 // questions array 
-let questions = [
+let questionsArray = [
     {
         question: "What is JavaScript",
-        answers: {
-            a: "I don't know.",
-            b: "Type of Coffee.",
-            c: "I know but I'm not telling",
-            d: "Where are we?",
-        },
-        correctAnswer: "a"
-        
+        answers: [ "I don't know.", "Type of Coffee.", "I know but I'm not telling", "Where are we?",],
+        correctAnswer: "I don't know",
     },{
         question: "What is HTML",
-        answers: {
-            a: "I don't know.",
-            b: "Type of programming language.",
-            c: "I know but I'm not telling",
-            d: "Where are we?",
-        },
+        answers: ["I don't know.", "Type of programming language.", "I know but I'm not telling", "Where are we?",],
         correctAnswer: "b",
     },{
         question: "What is CSS",
-        answers: {
-            a: "I don't know.",
-            b: "The Style.",
-            c: "I know but I'm not telling",
-            d: "Where are we?",
-        },
+        answers: ["I don't know.", "The Style.", "I know but I'm not telling", "Where are we?",],
         correctAnswer: "b"
     },{
         question: "What is JQuery",
-        answers: {
-            a: "I don't know.",
-            b: "Shorthand JavaScript",
-            c: "I know but I'm not telling",
-            d: "Where are we?",
-        },
+        answers: ["I don't know.", "Shorthand JavaScript", "I know but I'm not telling", "Where are we?",],
         correctAnswer: "b"
     }
 ]
@@ -160,18 +142,21 @@ function startTimer() {
 }
 
 // Creates quiz on screen
-function renderQuiz() {
-    // let output = [];
-    // let answers;
-    chosenQuestion = questions[Math.floor(Math.random() * questions.length)];
-    console.log(chosenQuestion);
-    let q = document.createElement("p");
-    console.log(q);
-    q.textContent = chosenQuestion;
-    document.qDisplay.appendChild(q)
-    aDisplay.textContent = chosenQuestion.answers;
-    // for(var i = 0; i < questions.length; i++) {
-    //     answers = [];
+function renderQuiz(questionIndex) {
+    qDisplay.innerHTML = "";
+    addAnswer.innerHTML = "";
+
+    // chosenQuestion = questions[Math.floor(Math.random() * questions.length)];
+    // console.log(chosenQuestion);
+   
+    for(var i = 0; i < questions.length; i++) {
+        let chosenQuestion = questions[questionIndex].question;
+        let userChoices = questions[questionIndex].answers;
+        qDisplay.textContent = chosenQuestion;
+        aDisplay.textContent = chosenAnswer;
+    }
+
+
     //     for(letter in questions[i].answers) {
     //         answers.push(
     //             '<label>'
@@ -187,7 +172,7 @@ function renderQuiz() {
     //     );
 //     }
 //     qDisplay.textContent = output.join('');
-}
+
 
 
 
