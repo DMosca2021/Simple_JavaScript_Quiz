@@ -44,8 +44,9 @@
 let quizArea = document.querySelector(".quiz-area");
 let quizTimer = document.querySelector(".quiz-timer");
 let startBtn = document.querySelector(".start-btn");
-let correctAns = document.querySelector(".correct-answer");
-let incorrectAns = document.querySelector(".incorrect-answer");
+let submitBtn = document.querySelector(".submit-btn")
+// let corCount = document.querySelector(".correct-answer"); --->for high score page
+// let incorCount = document.querySelector(".incorrect-answer"); ---> for high score page
 let qDisplay = document.querySelector("#question");
 let aDisplay = document.querySelector("#answer");
 
@@ -59,60 +60,47 @@ let timerCount;
 // questions array 
 let questions = [
     {
-        question1: "What is JavaScript",
+        question: "What is JavaScript",
+        answers: {
+            a: "I don't know.",
+            b: "Type of Coffee.",
+            c: "I know but I'm not telling",
+            d: "Where are we?",
+        },
+        correctAnswer: "a"
+        
     },{
-        question2: "What is HTML",
+        question: "What is HTML",
+        answers: {
+            a: "I don't know.",
+            b: "Type of programming language.",
+            c: "I know but I'm not telling",
+            d: "Where are we?",
+        },
+        correctAnswer: "b",
     },{
-        question3: "What is CSS",
+        question: "What is CSS",
+        answers: {
+            a: "I don't know.",
+            b: "The Style.",
+            c: "I know but I'm not telling",
+            d: "Where are we?",
+        },
+        correctAnswer: "b"
     },{
-        question4: "What is JQuery",
+        question: "What is JQuery",
+        answers: {
+            a: "I don't know.",
+            b: "Shorthand JavaScript",
+            c: "I know but I'm not telling",
+            d: "Where are we?",
+        },
+        correctAnswer: "b"
     }
 ]
 console.log(questions[0])
 console.log(questions.length)
-    // {
-    //     question: "What is JavaScript",
-    //     choice1: "I don't know.",
-    //     choice2: "Type of Coffee.",
-    //     choice3: "I know but I'm not telling",
-    //     choice4: "Where are we?",
-    // },{
-    //     question: "What is HTML",
-    //     choice1: "I don't know.",
-    //     choice2: "Type of programming language.",
-    //     choice3: "I know but I'm not telling",
-    //     choice4: "Where are we?",
-    // },{
-    //     question: "What is CSS",
-    //     choice1: "I don't know.",
-    //     choice2: "The Style.",
-    //     choice3: "I know but I'm not telling",
-    //     choice4: "Where are we?",
-    // },{
-    //     question: "What is JQuery",
-    //     choice1: "I don't know.",
-    //     choice2: "Shorthand JavaScript",
-    //     choice3: "I know but I'm not telling",
-    //     choice4: "Where are we?",
-    // }
 
-let answers = [
-    {
-        answer1: "I don't know.",
-    },{
-        answer2: "Type of programming language.",
-    },{
-        answer3: "The Style.",
-    },{
-        answer4: "Shorthand JavaScript",
-    }
-]
-
-// index of the starting question 
-// let firstQuestion = 0;
-
-// index of last question
-// const lastQuestion = questions.length - 1;
 
 // The init function is called when the page loads 
 function init() {
@@ -122,7 +110,7 @@ function init() {
 
 // The startQuiz function is called when the start button is clicked
 function startQuiz() {
-    isWin = false;
+    isDone = false;
     timerCount = 300;
     // Prevents start button from being clicked when round is in progress
     startBtn.disabled = true;
@@ -156,7 +144,7 @@ function startTimer() {
       quizTimer.textContent = timerCount;
       if (timerCount >= 0) {
         // Tests if win condition is met
-        if (isWin && timerCount > 0) {
+        if (isDone && timerCount > 0) {
           // Clears interval and stops timer
           clearInterval(timer);
         //   winGame();  ----> CHANGE THIS TO STORE REMAINING TIME AS HIGHSCORE
@@ -173,9 +161,40 @@ function startTimer() {
 
 // Creates quiz on screen
 function renderQuiz() {
-    // Randomly picks question from question array
+    // let output = [];
+    // let answers;
     chosenQuestion = questions[Math.floor(Math.random() * questions.length)];
     console.log(chosenQuestion);
+    let q = document.createElement("p");
+    console.log(q);
+    q.textContent = chosenQuestion;
+    document.qDisplay.appendChild(q)
+    aDisplay.textContent = chosenQuestion.answers;
+    // for(var i = 0; i < questions.length; i++) {
+    //     answers = [];
+    //     for(letter in questions[i].answers) {
+    //         answers.push(
+    //             '<label>'
+    //             + '<input type="radio" name="question'+i+'" value="'+letter+'">'
+    //             + letter + ': '
+    //             + questions[i].answers[letter]
+    //         + '</label>'
+    //         );
+    //     }
+    //     output.push(
+    //         '<div class="question">' + questions[i].question + '</div>'
+	// 		+ '<div class="answer">' + answers.join('') + '</div>'
+    //     );
+//     }
+//     qDisplay.textContent = output.join('');
+}
+
+
+
+
+    // Randomly picks question from question array
+    // 
+    // 
     // lettersInChosenWord = chosenWord.split("");
     // numBlanks = lettersInChosenWord.length;
     // blanksLetters = []
@@ -184,13 +203,7 @@ function renderQuiz() {
     //   blanksLetters.push("_");
     // }
     // Converts blankLetters array into a string and renders it on the screen
-    qDisplay.textContent = chosenQuestion
-}
-
-
-
-
-
+    // qDisplay.textContent = chosenQuestion
 
 
 
