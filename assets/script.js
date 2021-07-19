@@ -57,6 +57,7 @@ let incorrectCount = 0;
 let highscore = 0;
 let timer;
 let timerCount;
+let penaltyTime = 10;
 
 let questionIndex = 0;
 
@@ -69,19 +70,18 @@ let questionsArray = [
     },{
         question: "What is HTML",
         answers: ["I don't know.", "Type of programming language.", "I know but I'm not telling", "Where are we?",],
-        correctAnswer: "b",
+        correctAnswer: "Type of programming language.",
     },{
         question: "What is CSS",
         answers: ["I don't know.", "The Style.", "I know but I'm not telling", "Where are we?",],
-        correctAnswer: "b"
+        correctAnswer: "The Style."
     },{
         question: "What is JQuery",
         answers: ["I don't know.", "Shorthand JavaScript", "I know but I'm not telling", "Where are we?",],
-        correctAnswer: "b"
+        correctAnswer: "Shorthand JavaScript"
     }
 ]
-console.log(questions[0])
-console.log(questions.length)
+
 
 
 // The init function is called when the page loads 
@@ -149,14 +149,33 @@ function renderQuiz(questionIndex) {
     // chosenQuestion = questions[Math.floor(Math.random() * questions.length)];
     // console.log(chosenQuestion);
    
-    for(var i = 0; i < questions.length; i++) {
-        let chosenQuestion = questions[questionIndex].question;
-        let userChoices = questions[questionIndex].answers;
+    for(let i = 0; i < questionsArray.length; i++) {
+        let chosenQuestion = questionsArray[questionIndex].question;
+        let userChoices = questionsArray[questionIndex].answers;
+
         qDisplay.textContent = chosenQuestion;
-        aDisplay.textContent = chosenAnswer;
+    }
+    userChoices.forEach(function (newAnswer) {
+        let listItem = document.createElement("li");
+        listItem.textContent = newAnswer;
+        aDisplay.appendChild(addAnswer);
+        addAnswer.appendChild(listItem);
+        listItem.addEventListener("click", (checkAnswer));
+    });
+}
+
+function checkAnswer(event) {
+    let element = event.target;
+
+    if (element.textContent == questionsArray[questionIndex].correctAnswer) {
+        score++;
+    } else {
+        timerCount = timerCount - penaltyTime;
     }
 
+    questionIndex++;
 
+}
     //     for(letter in questions[i].answers) {
     //         answers.push(
     //             '<label>'
