@@ -16,10 +16,8 @@
 // THEN I can save my initials and my score
 
 
-// function with add event listener for start button to start the quiz.
-// need countdown timer to start with the quiz --- time left needs to be recorded as highscore 
+//--- time left needs to be recorded as highscore 
 // add time reduction function for incorrect answers
-// make an array of objects(questions) with properties (1.correct answer, 2.array of possible answers 3.)
 // store the questions and corresponding correct answers 
 // add event listener for user answer selection so selection can be stored on the local storage
 // creat a function to compare the user selection with the correct answer for that question
@@ -40,18 +38,22 @@
 
 // ***i need check boxes for answers and submit button to start answer check function ---> and next Q
 
-
-let quizArea = document.querySelector(".quiz-area");
-let quizTimer = document.querySelector(".quiz-timer");
 let startBtn = document.querySelector(".start-btn");
-let submitBtn = document.querySelector(".submit-btn")
+let quizTimer = document.querySelector(".quiz-timer");
+let quizArea = document.querySelector(".quiz-area");
+let qDisplay = document.querySelector("#question");
+let aDisplay = document.querySelector("#answers");
+let submitBtn = document.querySelector(".submit-btn");
+let choiceA = document.getElementById("A");
+let choiceB = document.getElementById("B");
+let choiceC = document.getElementById("C");
+let choiceD = document.getElementById("D");
+
+// let addAnswer = document.createElement("ul");
 // let corCount = document.querySelector(".correct-answer"); --->for high score page
 // let incorCount = document.querySelector(".incorrect-answer"); ---> for high score page
-let qDisplay = document.querySelector("#question");
-let aDisplay = document.querySelector("#answer");
-let addAnswer = document.createElement("ul");
-
 // let chosenQuestion = ""; 
+
 let correctCount = 0;
 let incorrectCount = 0;
 let highscore = 0;
@@ -100,24 +102,6 @@ function startQuiz() {
     startTimer()
 }
 
-// -----------CHANGE THIS TO COLLECT CORRECT AND INCORRECT ANSWERS------------
-// The winGame function is called when the win condition is met
-// function winGame() {
-//     wordBlank.textContent = "YOU WON!!!🏆 ";
-//     winCounter++
-//     startButton.disabled = false;
-//     setWins()
-// }
-  
-  // The loseGame function is called when timer reaches 0
-//   function loseGame() {
-//     wordBlank.textContent = "GAME OVER";
-//     loseCounter++
-//     startButton.disabled = false;
-//     setLosses()
-// }
-// ---------------------------------------------------------------------------
-
 // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
 function startTimer() {
     // Sets timer
@@ -142,26 +126,8 @@ function startTimer() {
 }
 
 // Creates quiz on screen
-function renderQuiz(questionIndex) {
-    qDisplay.innerHTML = "";
-    addAnswer.innerHTML = "";
-
-    // chosenQuestion = questions[Math.floor(Math.random() * questions.length)];
-    // console.log(chosenQuestion);
-   
-    for(let i = 0; i < questionsArray.length; i++) {
-        let chosenQuestion = questionsArray[questionIndex].question;
-        let userChoices = questionsArray[questionIndex].answers;
-
-        qDisplay.textContent = chosenQuestion;
-    }
-    userChoices.forEach(function (newAnswer) {
-        let listItem = document.createElement("li");
-        listItem.textContent = newAnswer;
-        aDisplay.appendChild(addAnswer);
-        addAnswer.appendChild(listItem);
-        listItem.addEventListener("click", (checkAnswer));
-    });
+function renderQuiz() {
+  
 }
 
 function checkAnswer(event) {
@@ -176,45 +142,6 @@ function checkAnswer(event) {
     questionIndex++;
 
 }
-    //     for(letter in questions[i].answers) {
-    //         answers.push(
-    //             '<label>'
-    //             + '<input type="radio" name="question'+i+'" value="'+letter+'">'
-    //             + letter + ': '
-    //             + questions[i].answers[letter]
-    //         + '</label>'
-    //         );
-    //     }
-    //     output.push(
-    //         '<div class="question">' + questions[i].question + '</div>'
-	// 		+ '<div class="answer">' + answers.join('') + '</div>'
-    //     );
-//     }
-//     qDisplay.textContent = output.join('');
-
-
-
-
-
-    // Randomly picks question from question array
-    // 
-    // 
-    // lettersInChosenWord = chosenWord.split("");
-    // numBlanks = lettersInChosenWord.length;
-    // blanksLetters = []
-    // Uses loop to push blanks to blankLetters array
-    // for (var i = 0; i < numBlanks; i++) {
-    //   blanksLetters.push("_");
-    // }
-    // Converts blankLetters array into a string and renders it on the screen
-    // qDisplay.textContent = chosenQuestion
-
-
-
-
-
-
-
 
 
 startBtn.addEventListener("click", startQuiz);
