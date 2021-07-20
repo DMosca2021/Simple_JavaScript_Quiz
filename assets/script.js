@@ -123,7 +123,7 @@ function startQuiz() {
     startTimer()
 }
 
-// The setTimer function starts and stops the timer and triggers winGame() and loseGame()
+// The setTimer function starts and stops the timer, will triggers (winGame() and loseGame()) <----replace functions to store time as score and end/fail quiz.
 function startTimer() {
     // Sets timer
     timer = setInterval(function() {
@@ -151,6 +151,7 @@ function renderQuiz() {
     let output = [];
     let choices;
     let label = document.createElement("label")
+
     for(var i=0; i<questionsArray.length; i++){
         // variable to store the list of possible answers
         choices = [];
