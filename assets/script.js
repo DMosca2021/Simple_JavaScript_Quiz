@@ -44,10 +44,6 @@ let quizArea = document.querySelector(".quiz-area");
 let questionDisplay = document.querySelector("#question");
 let answerDisplay = document.querySelector("#answers");
 let submitBtn = document.querySelector(".submit-btn");
-let choiceA = document.getElementById("A");
-let choiceB = document.getElementById("B");
-let choiceC = document.getElementById("C");
-let choiceD = document.getElementById("D");
 
 // let addAnswer = document.createElement("ul");
 // let corCount = document.querySelector(".correct-answer"); --->for high score page
@@ -152,8 +148,42 @@ function startTimer() {
 
 // Creates quiz on screen
 function renderQuiz() {
+    let output = [];
+
+
+    questionsArray.forEach((question, answers) => {
+        console.log(question);
+        console.log(answers);
+        // variable to store the list of possible answers
+        const choices = [];
+        
+        // and for each available answer...
+        for (let i = 0; i < question.answers.length; i++) {
+            const element = answers[i];
+
+            console.log(question.answers)
+        //   ...add an HTML radio button
+        //   answers.push(
+        //     `<label>
+        //       <input type="radio" name="question${questionNumber}" value="${letter}">
+        //       ${letter} :
+        //       ${currentQuestion.answers[letter]}
+        //     </label>`
+        //   );
+        }
   
+        // // // add this question and its answers to the output
+        // output.push(
+        //   `<div class="question"> ${currentQuestion.question} </div>
+        //   <div class="answers"> ${answers.join('')} </div>`
+        // );
+      }
+    );
+  
+    // finally combine our output list into one string of HTML and put it on the page
+    quizArea.innerHTML = output.join('');
 }
+
 
 function checkAnswer(event) {
     let element = event.target;
