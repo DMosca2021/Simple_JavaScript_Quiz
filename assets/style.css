@@ -100,9 +100,10 @@ main {
 .quiz-area {
     font-size: 40px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap; 
     justify-content: center;
+    align-items: center;
     border: 1px solid black;
     max-width: 500px;
     max-height: 500px;

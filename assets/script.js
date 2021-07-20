@@ -67,23 +67,48 @@ let questionIndex = 0;
 let questionsArray = [
     {
         question: "What is JavaScript",
-        answers: [ "I don't know.", "Type of Coffee.", "I know but I'm not telling", "Where are we?",],
-        correctAnswer: "I don't know",
+        answers: [ 
+        {
+            A: "I don't know.", 
+            B: "Type of Coffee.", 
+            C: "I know but I'm not telling", 
+            D: "Where are we?",
+        }],
+        correctAnswer: "A",
     },{
         question: "What is HTML",
-        answers: ["I don't know.", "Type of programming language.", "I know but I'm not telling", "Where are we?",],
+        answers: [
+        {
+            A: "I don't know.", 
+            B: "Type of programming language.", 
+            C: "I know but I'm not telling", 
+            D: "Where are we?",
+        }],
         correctAnswer: "Type of programming language.",
     },{
         question: "What is CSS",
-        answers: ["I don't know.", "The Style.", "I know but I'm not telling", "Where are we?",],
+        answers: [
+        {
+            A: "I don't know.", 
+            B: "The Style.", 
+            C: "I know but I'm not telling", 
+            D: "Where are we?",
+        }],
         correctAnswer: "The Style."
     },{
         question: "What is JQuery",
-        answers: ["I don't know.", "Shorthand JavaScript", "I know but I'm not telling", "Where are we?",],
+        answers: [
+        {
+            A: "I don't know.", 
+            B: "Shorthand JavaScript", 
+            C: "I know but I'm not telling", 
+            D: "Where are we?",
+        }],
         correctAnswer: "Shorthand JavaScript"
     }
 ]
 
+console.log(questionsArray[0].answers[0]);
 
 
 // The init function is called when the page loads 
