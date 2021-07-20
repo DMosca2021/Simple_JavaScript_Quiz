@@ -149,27 +149,26 @@ function startTimer() {
 // Creates quiz on screen
 function renderQuiz() {
     let output = [];
-
-
-    questionsArray.forEach((question, answers) => {
-        console.log(question);
-        console.log(answers);
+    let choices;
+    let label = document.createElement("label")
+    for(var i=0; i<questionsArray.length; i++){
         // variable to store the list of possible answers
-        const choices = [];
+        choices = [];
         
         // and for each available answer...
-        for (let i = 0; i < question.answers.length; i++) {
-            const element = answers[i];
+        for (letter in questionsArray[i].answers) {
 
-            console.log(question.answers)
+            console.log(questionsArray[i].answers)
         //   ...add an HTML radio button
-        //   answers.push(
-        //     `<label>
-        //       <input type="radio" name="question${questionNumber}" value="${letter}">
-        //       ${letter} :
-        //       ${currentQuestion.answers[letter]}
-        //     </label>`
-        //   );
+          answerDisplay.appendChild(label);
+        //   label.setAttribute("input type", "radio");
+            // `<label>
+            //   <input type="radio" name="question${questionNumber}" value="${letter}">
+            //   ${letter} :
+            //   ${currentQuestion.answers[letter]}
+            // </label>`
+           
+          
         }
   
         // // // add this question and its answers to the output
@@ -177,8 +176,7 @@ function renderQuiz() {
         //   `<div class="question"> ${currentQuestion.question} </div>
         //   <div class="answers"> ${answers.join('')} </div>`
         // );
-      }
-    );
+    };
   
     // finally combine our output list into one string of HTML and put it on the page
     quizArea.innerHTML = output.join('');
