@@ -82,7 +82,7 @@ let questionsArray = [
         choiceD: "Where are we?",
         correctAnswer: "The Style."
     },{
-        question: "What is JQuery",
+        question: "What is jQuery",
         choiceA: "I don't know.", 
         choiceB: "Shorthand JavaScript", 
         choiceC: "I know but I'm not telling", 
@@ -139,24 +139,31 @@ function startTimer() {
 // Creates quiz on screen
 function renderQuiz() {
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-    console.log(questionIndex);
+
+    console.log(questionIndex); // logs 3 first time
+
     // keeps track of current question
     currentQuestion = availableQuestions[questionIndex];
-    questionDisplay.innerText = currentQuestion.question;
+    questionDisplay.innerText = currentQuestion.question; // works shows question on page
+
+    console.log(availableQuestions[questionIndex]); // works --- 3 would be jQuery(lastQ) logged jQuery
 
     answerDisplay.forEach(choice => {
         const letter = choice.dataset["letter"];
-        choice.innerText = currentQuestion["choice" + letter]
+        console.log(letter); // works -- Showed the first letter choice
+        answerDisplay.innerText = currentQuestion["choice" + letter];
+        console.log(currentQuestion["choice" + letter]); // works -- showed the first answer associated with the correct letter
     });
     
+    // Removes question from array for no repeats.
     availableQuestions.splice(questionIndex, 1);
 
     acceptingAnswers = true
 }
 
-answerDisplay.forEach(choice => {
+// answerDisplay.forEach(choice => {
 
-})
+// })
 
 
 // function checkAnswer(event) {
