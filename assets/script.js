@@ -37,18 +37,15 @@
 // maybe bonus questions for more time/higher score 
 
 // ***i need check boxes for answers and submit button to start answer check function ---> and next Q
+// let corCount = document.querySelector(".correct-answer"); --->for high score page
+// let incorCount = document.querySelector(".incorrect-answer"); ---> for high score page
 
 let startBtn = document.querySelector(".start-btn");
 let quizTimer = document.querySelector(".quiz-timer");
 let quizArea = document.querySelector(".quiz-area");
 let questionDisplay = document.querySelector("#question");
-let answerDisplay = document.querySelector("#answers");
+let answerDisplay = Array.from(document.querySelectorAll("#answers"));
 let submitBtn = document.querySelector(".submit-btn");
-
-// let addAnswer = document.createElement("ul");
-// let corCount = document.querySelector(".correct-answer"); --->for high score page
-// let incorCount = document.querySelector(".incorrect-answer"); ---> for high score page
-// let chosenQuestion = ""; 
 
 let correctCount = 0;
 let incorrectCount = 0;
@@ -57,54 +54,45 @@ let timer;
 let timerCount;
 let penaltyTime = 10;
 
-let questionIndex = 0;
+let currentQuestion = {};
+let correctAnswers = true
+let availableQuestions = [];
 
 // questions array 
 let questionsArray = [
     {
         question: "What is JavaScript",
-        answers: [ 
-        {
-            A: "I don't know.", 
-            B: "Type of Coffee.", 
-            C: "I know but I'm not telling", 
-            D: "Where are we?",
-        }],
+        choiceA: "I don't know.", 
+        choiceB: "Type of Coffee.", 
+        choiceC: "I know but I'm not telling", 
+        choiceD: "Where are we?",
         correctAnswer: "A",
     },{
         question: "What is HTML",
-        answers: [
-        {
-            A: "I don't know.", 
-            B: "Type of programming language.", 
-            C: "I know but I'm not telling", 
-            D: "Where are we?",
-        }],
+        choiceA: "I don't know.", 
+        choiceB: "Type of programming language.", 
+        choiceC: "I know but I'm not telling", 
+        choiceD: "Where are we?",
         correctAnswer: "Type of programming language.",
     },{
         question: "What is CSS",
-        answers: [
-        {
-            A: "I don't know.", 
-            B: "The Style.", 
-            C: "I know but I'm not telling", 
-            D: "Where are we?",
-        }],
+        choiceA: "I don't know.", 
+        choiceB: "The Style.", 
+        choiceC: "I know but I'm not telling", 
+        choiceD: "Where are we?",
         correctAnswer: "The Style."
     },{
         question: "What is JQuery",
-        answers: [
-        {
-            A: "I don't know.", 
-            B: "Shorthand JavaScript", 
-            C: "I know but I'm not telling", 
-            D: "Where are we?",
-        }],
+        choiceA: "I don't know.", 
+        choiceB: "Shorthand JavaScript", 
+        choiceC: "I know but I'm not telling", 
+        choiceD: "Where are we?",
         correctAnswer: "Shorthand JavaScript"
     }
 ]
 
-console.log(questionsArray[0].answers[0]);
+
+console.log(questionsArray[0].choiceA);
 
 
 // The init function is called when the page loads 
@@ -117,11 +105,13 @@ function init() {
 function startQuiz() {
     isDone = false;
     timerCount = 300;
-    // Prevents start button from being clicked when round is in progress
+    highscore = 0
     startBtn.disabled = true;
-    renderQuiz()
-    startTimer()
-}
+    availableQuestions = [...questionsArray];
+    console.log(availableQuestions);
+    renderQuiz();
+    startTimer();
+};
 
 // The setTimer function starts and stops the timer, will triggers (winGame() and loseGame()) <----replace functions to store time as score and end/fail quiz.
 function startTimer() {
@@ -148,54 +138,81 @@ function startTimer() {
 
 // Creates quiz on screen
 function renderQuiz() {
-    let output = [];
-    let choices;
-    let label = document.createElement("label")
+    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+    console.log(questionIndex);
+    // keeps track of current question
+    currentQuestion = availableQuestions[questionIndex];
+    questionDisplay.innerText = currentQuestion.question;
 
-    for(var i=0; i<questionsArray.length; i++){
-        // variable to store the list of possible answers
-        choices = [];
-        
+    answerDisplay.forEach(choice => {
+        const letter = choice.dataset["letter"];
+        choice.innerText = currentQuestion["choice" + letter]
+    });
+    
+    availableQuestions.splice(questionIndex, 1);
+
+    acceptingAnswers = true
+}
+
+answerDisplay.forEach(choice => {
+
+})
+
+
+// function checkAnswer(event) {
+//     let element = event.target;
+
+//     if (element.textContent == questionsArray[questionIndex].correctAnswer) {
+//         score++;
+//     } else {
+//         timerCount = timerCount - penaltyTime;
+//     }
+
+//     questionIndex++;
+
+// }
+
+// for(let i=0; i<questionsArray.length; i++){
+        // console.log(questionsArray.[i]);
         // and for each available answer...
-        for (letter in questionsArray[i].answers) {
+        // for (letter in questionsArray[i].answers) 
 
-            console.log(questionsArray[i].answers)
-        //   ...add an HTML radio button
-          answerDisplay.appendChild(label);
+        //     console.log(questionsArray[i]);
+        //     console.log("---------****--------")
+        //     console.log(questionsArray[2]);
+        // //   ...add an HTML radio button
         //   label.setAttribute("input type", "radio");
+        //   answerDisplay.append(label);
+        
             // `<label>
-            //   <input type="radio" name="question${questionNumber}" value="${letter}">
+            //   <input type="radio" name="question${questionletter}" value="${letter}">
             //   ${letter} :
             //   ${currentQuestion.answers[letter]}
             // </label>`
            
           
-        }
+        // }
   
         // // // add this question and its answers to the output
         // output.push(
         //   `<div class="question"> ${currentQuestion.question} </div>
         //   <div class="answers"> ${answers.join('')} </div>`
         // );
-    };
+    // };
   
     // finally combine our output list into one string of HTML and put it on the page
-    quizArea.innerHTML = output.join('');
-}
+    // quizArea.innerHTML = output.join('');
 
 
-function checkAnswer(event) {
-    let element = event.target;
 
-    if (element.textContent == questionsArray[questionIndex].correctAnswer) {
-        score++;
-    } else {
-        timerCount = timerCount - penaltyTime;
-    }
 
-    questionIndex++;
 
-}
+
+
+
+
+
+
 
 
 startBtn.addEventListener("click", startQuiz);
