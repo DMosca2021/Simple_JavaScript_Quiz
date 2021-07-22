@@ -44,7 +44,7 @@ let startBtn = document.querySelector(".start-btn");
 let quizTimer = document.querySelector(".quiz-timer");
 let quizArea = document.querySelector(".quiz-area");
 let questionDisplay = document.querySelector("#question");
-let answerDisplay = Array.from(document.querySelectorAll("#answers"));
+let answerDisplay = document.querySelector("#answers");
 let choiceA = document.querySelector("#A")
 let choiceB = document.querySelector("#B")
 let choiceC = document.querySelector("#C")
@@ -66,6 +66,7 @@ let availableQuestions = [];
 let questionsArray = [
     {
         question: "Where in the HTML does the JavaScript link go?",
+        // choices: [] <---use array for answers
         choiceA: "In the head with the CSS link.", 
         choiceB: "Where ever you want, location does not matter.", 
         choiceC: "At the bottom of the body.", 
@@ -157,6 +158,11 @@ function renderQuiz() {
 
     console.log(availableQuestions[questionIndex]); // works --- 3 would be jQuery(lastQ) logged jQuery
 
+    // for each loop 
+    currentQuestion.choices.forEach(element => {
+        
+    });
+
     choiceA.innerText = currentQuestion.choiceA;
     choiceB.innerText = currentQuestion.choiceB;
     choiceC.innerText = currentQuestion.choiceC;
@@ -168,6 +174,12 @@ function renderQuiz() {
     acceptingAnswers = true
 }
 
+// check answer function
 
+// function to end quiz
+
+// function to handle local storage 
 
 startBtn.addEventListener("click", startQuiz);
+
+// `` <---basically if else 

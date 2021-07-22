@@ -131,7 +131,7 @@ main {
     align-items: center;
     border: 1px solid black;
     padding: 25px;
-    margin: auto 0px;
+    margin: 0px, 50px;
     width: 75%;
 }
 
