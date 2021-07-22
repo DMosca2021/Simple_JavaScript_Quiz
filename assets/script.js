@@ -45,6 +45,10 @@ let quizTimer = document.querySelector(".quiz-timer");
 let quizArea = document.querySelector(".quiz-area");
 let questionDisplay = document.querySelector("#question");
 let answerDisplay = Array.from(document.querySelectorAll("#answers"));
+let choiceA = document.querySelector("#A")
+let choiceB = document.querySelector("#B")
+let choiceC = document.querySelector("#C")
+let choiceD = document.querySelector("#D")
 let submitBtn = document.querySelector(".submit-btn");
 
 let correctCount = 0;
@@ -99,16 +103,13 @@ let questionsArray = [
 ]
 
 
-console.log(questionsArray[0].choiceA);
-
-
 // The init function is called when the page loads 
 function init() {
     getCorrect();
     getIncorrect();
 }
 
-// The startQuiz function is called when the start button is clicked
+// The startQuiz function is called when the start button is clicked, starts timer and shows quiz
 function startQuiz() {
     isDone = false;
     timerCount = 300;
@@ -120,7 +121,7 @@ function startQuiz() {
     startTimer();
 };
 
-// The setTimer function starts and stops the timer, will triggers (winGame() and loseGame()) <----replace functions to store time as score and end/fail quiz.
+// The setTimer function starts and stops the timer, will trigger *(winGame() and loseGame())* <----replace functions to store time as score and end/fail quiz.
 function startTimer() {
     // Sets timer
     timer = setInterval(function() {
@@ -156,20 +157,10 @@ function renderQuiz() {
 
     console.log(availableQuestions[questionIndex]); // works --- 3 would be jQuery(lastQ) logged jQuery
 
-    answerDisplay.forEach(choice => {
-        const letter = choice.dataset["letter"];
-        console.log(letter); // works -- Showed the first letter choice
-
-        // for (letter in currentQuestion) {
-        //     if (Object.hasOwnProperty.call(currentQuestion, letter)) {
-        //         const element = currentQuestion[letter];
-                
-        //     }
-        // }
-
-        answerDisplay.innerText = currentQuestion["choice" + letter];
-        console.log(currentQuestion["choice" + letter]); // works -- showed the first answer associated with the correct letter
-    });
+    choiceA.innerText = currentQuestion.choiceA;
+    choiceB.innerText = currentQuestion.choiceB;
+    choiceC.innerText = currentQuestion.choiceC;
+    choiceD.innerText = currentQuestion.choiceD;
     
     // Removes question from array for no repeats.
     availableQuestions.splice(questionIndex, 1);

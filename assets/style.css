@@ -6,17 +6,27 @@
   }
 
 /* Styling for welcome text and start button */
+body {
+    max-height: 100%;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
 header {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     padding: 20px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: grey;
     color: black;
     justify-content: center;
     align-items: center;
-  }
+}
 
 h1 {
     display: flex;
@@ -24,17 +34,22 @@ h1 {
     flex-wrap: wrap;
     margin: 10px;
     font-size: 48px;
-  }
+}
+
+p {
+    font-size: 24px;
+}
 
 .start-btn {
-    height: 40px;
-    width: 80px;
+    height: 60px;
+    width: 100px;
     background-color: lightgreen;
     color: black;
     font-weight: bold;
     border-radius: 5px;
     margin-left: 5px;
     border-style: inset;
+    font-size: 20px;
 }
 
 
@@ -43,6 +58,7 @@ nav {
     flex-direction: row;
     flex-wrap: wrap; 
     justify-content: space-between;
+    align-items: center;
     background-color: rgb(59, 59, 59);
     color: white;
 }
@@ -57,12 +73,13 @@ nav {
 }
 
 .drop-menu {
-    background-color: #04AA6D;
+    background-color: grey;
     color: white;
     padding: 16px;
     font-size: 16px;
-    border: none;
-  }
+    border: 1px dashed;
+    border-radius: 10%;
+}
 
 .drop-content {
     display: none;
@@ -87,21 +104,25 @@ nav {
 .game-menu:hover .drop-menu {background-color: #3e8e41;}
 
 .quiz-timer {
+    background-color: grey;
     font-size: 20px;
     padding: 10px;
+    border: 1px dashed;
+    border-radius: 10%;
+    margin-right: 10px;
 }
 
 /* Styling for main area where questions and answers appear */
 
+
 main {
-    background-color: lightblue;
-    max-height: 100%;
     flex-direction: row;
     flex-wrap: wrap; 
     justify-content: center;
     align-items: center;
 }
 .quiz-area {
+    background-color: wheat;
     font-size: 40px;
     display: flex;
     flex-direction: column;
@@ -109,10 +130,9 @@ main {
     justify-content: center;
     align-items: center;
     border: 1px solid black;
-    max-width: 500px;
-    max-height: 500px;
     padding: 25px;
     margin: auto 0px;
+    width: 75%;
 }
 
 .choice {
@@ -124,4 +144,5 @@ main {
     border-radius: 50%;
     margin-left: 5px;
     border-style: outset;
+    align-items: flex-start;
 }
