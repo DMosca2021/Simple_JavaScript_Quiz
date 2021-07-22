@@ -32,7 +32,6 @@ h1 {
     background-color: lightgreen;
     color: black;
     font-weight: bold;
-    border-style: none;
     border-radius: 5px;
     margin-left: 5px;
     border-style: inset;
@@ -96,6 +95,11 @@ nav {
 
 main {
     background-color: lightblue;
+    max-height: 100%;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: center;
+    align-items: center;
 }
 .quiz-area {
     font-size: 40px;
@@ -108,5 +112,16 @@ main {
     max-width: 500px;
     max-height: 500px;
     padding: 25px;
-    margin: 50px;
+    margin: auto 0px;
+}
+
+.choice {
+    height: 20px;
+    width: 20px;
+    background-color: lightgreen;
+    color: black;
+    font-weight: bold;
+    border-radius: 50%;
+    margin-left: 5px;
+    border-style: outset;
 }

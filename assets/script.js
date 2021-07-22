@@ -61,33 +61,40 @@ let availableQuestions = [];
 // questions array 
 let questionsArray = [
     {
-        question: "What is JavaScript",
-        choiceA: "I don't know.", 
-        choiceB: "Type of Coffee.", 
-        choiceC: "I know but I'm not telling", 
-        choiceD: "Where are we?",
-        correctAnswer: "A",
+        question: "Where in the HTML does the JavaScript link go?",
+        choiceA: "In the head with the CSS link.", 
+        choiceB: "Where ever you want, location does not matter.", 
+        choiceC: "At the bottom of the body.", 
+        choiceD: "You do not need to link JavaScript, it's already built in.",
+        correctAnswer: "C"
     },{
-        question: "What is HTML",
-        choiceA: "I don't know.", 
-        choiceB: "Type of programming language.", 
-        choiceC: "I know but I'm not telling", 
-        choiceD: "Where are we?",
-        correctAnswer: "Type of programming language.",
+        question: "Inside which HTML element do we put the JavaScript?",
+        choiceA: "<js>", 
+        choiceB: "<script>", 
+        choiceC: "<javascript>", 
+        choiceD: "<scripting>",
+        correctAnswer: "B"
     },{
-        question: "What is CSS",
-        choiceA: "I don't know.", 
-        choiceB: "The Style.", 
-        choiceC: "I know but I'm not telling", 
-        choiceD: "Where are we?",
-        correctAnswer: "The Style."
+        question: "How do you call a function named myFunction?",
+        choiceA: "call function myFunction()", 
+        choiceB: "call myFunction()", 
+        choiceC: "myFunction", 
+        choiceD: "myFunction()",
+        correctAnswer: "D"
     },{
-        question: "What is jQuery",
-        choiceA: "I don't know.", 
-        choiceB: "Shorthand JavaScript", 
-        choiceC: "I know but I'm not telling", 
-        choiceD: "Where are we?",
-        correctAnswer: "Shorthand JavaScript"
+        question: "How does a FOR loop start?",
+        choiceA: "for (i = 0; i < 5; i++)", 
+        choiceB: "for {i = 0; i < 5; i++}", 
+        choiceC: "for [i = 0; i < 5; i++]", 
+        choiceD: "(for i = 0, i < 5, i++)",
+        correctAnswer: "A"
+    },{
+        question: "Which operator is used to assign a value to a variable?",
+        choiceA: "=",
+        choiceB: "X",
+        choiceC: "*",
+        choiceD: "-",
+        correctAnswer: "A"
     }
 ]
 
@@ -138,11 +145,12 @@ function startTimer() {
 
 // Creates quiz on screen
 function renderQuiz() {
+    // randomize first question choice
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
 
     console.log(questionIndex); // logs 3 first time
 
-    // keeps track of current question
+    // keep track of current question
     currentQuestion = availableQuestions[questionIndex];
     questionDisplay.innerText = currentQuestion.question; // works shows question on page
 
@@ -151,6 +159,14 @@ function renderQuiz() {
     answerDisplay.forEach(choice => {
         const letter = choice.dataset["letter"];
         console.log(letter); // works -- Showed the first letter choice
+
+        // for (letter in currentQuestion) {
+        //     if (Object.hasOwnProperty.call(currentQuestion, letter)) {
+        //         const element = currentQuestion[letter];
+                
+        //     }
+        // }
+
         answerDisplay.innerText = currentQuestion["choice" + letter];
         console.log(currentQuestion["choice" + letter]); // works -- showed the first answer associated with the correct letter
     });
@@ -160,65 +176,6 @@ function renderQuiz() {
 
     acceptingAnswers = true
 }
-
-// answerDisplay.forEach(choice => {
-
-// })
-
-
-// function checkAnswer(event) {
-//     let element = event.target;
-
-//     if (element.textContent == questionsArray[questionIndex].correctAnswer) {
-//         score++;
-//     } else {
-//         timerCount = timerCount - penaltyTime;
-//     }
-
-//     questionIndex++;
-
-// }
-
-// for(let i=0; i<questionsArray.length; i++){
-        // console.log(questionsArray.[i]);
-        // and for each available answer...
-        // for (letter in questionsArray[i].answers) 
-
-        //     console.log(questionsArray[i]);
-        //     console.log("---------****--------")
-        //     console.log(questionsArray[2]);
-        // //   ...add an HTML radio button
-        //   label.setAttribute("input type", "radio");
-        //   answerDisplay.append(label);
-        
-            // `<label>
-            //   <input type="radio" name="question${questionletter}" value="${letter}">
-            //   ${letter} :
-            //   ${currentQuestion.answers[letter]}
-            // </label>`
-           
-          
-        // }
-  
-        // // // add this question and its answers to the output
-        // output.push(
-        //   `<div class="question"> ${currentQuestion.question} </div>
-        //   <div class="answers"> ${answers.join('')} </div>`
-        // );
-    // };
-  
-    // finally combine our output list into one string of HTML and put it on the page
-    // quizArea.innerHTML = output.join('');
-
-
-
-
-
-
-
-
-
-
 
 
 
