@@ -135,10 +135,12 @@ function renderQuiz() {
     console.log(currentQuestion.choices); // works shows current question and the correct choice array
 
     for (let i = 0; i < currentQuestion.choices.length; i++) {
+        console.log(currentQuestion.choices.length)
         let answer = document.createElement("button");
         answer.className = "answer";
         answer.setAttribute("inputmode", "radio")
         answer.setAttribute("style", "height: 15px; width: 15px; background-color: lightgreen; display: flex; flex-direction: column;")
+        answer.textContent = currentQuestion.choices
         answerDisplay.append(answer);
         
     }
@@ -165,3 +167,8 @@ function renderQuiz() {
 startBtn.addEventListener("click", startQuiz);
 
 // `` <---basically if else 
+
+// for (let index = 0; index < array.length; index++) {
+//     const element = array[index];
+    
+// }
