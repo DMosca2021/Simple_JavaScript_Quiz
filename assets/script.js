@@ -5,8 +5,8 @@
 
 // GIVEN I am taking a code quiz
 // WHEN I click the start button
-// THEN a timer starts and I am presented with a question ---- start with 10 questions, 4 multiple choice each.
-// WHEN I answer a question ------- reuse 10 correct answers over to complete multiple choices 
+// THEN a timer starts and I am presented with a question 
+// WHEN I answer a question 
 // THEN I am presented with another question
 // WHEN I answer a question incorrectly
 // THEN time is subtracted from the clock
@@ -28,15 +28,6 @@
 // menu for highscore needs to link to a separate html 
 // ---do the same for change of difficulty and bonus quiz
 
-// personal objectives after criteria is met and if time permits
-// make start button change to "Good Luck!" after click event
-// add at least 2 additional question arrays for different difficulties easy med hard
-// create new q/a arrays to incorporate HTML and CSS fundamentals
-// make high score only include top 5 highest scores, add date stamp
-// add completed and incomplete quiz counter to high scores 
-// maybe bonus questions for more time/higher score 
-
-// ***i need check boxes for answers and submit button to start answer check function ---> and next Q
 // let corCount = document.querySelector(".correct-answer"); --->for high score page
 // let incorCount = document.querySelector(".incorrect-answer"); ---> for high score page
 
@@ -66,40 +57,24 @@ let availableQuestions = [];
 let questionsArray = [
     {
         question: "Where in the HTML does the JavaScript link go?",
-        // choices: [] <---use array for answers
-        choiceA: "In the head with the CSS link.", 
-        choiceB: "Where ever you want, location does not matter.", 
-        choiceC: "At the bottom of the body.", 
-        choiceD: "You do not need to link JavaScript, it's already built in.",
-        correctAnswer: "C"
+        choices: ["In the head with the CSS link.", "Where ever you want, location does not matter.", "At the bottom of the body.", "You do not need to link JavaScript, it's already built in."] ,
+        correctAnswer: "At the bottom of the body."
     },{
         question: "Inside which HTML element do we put the JavaScript?",
-        choiceA: "<js>", 
-        choiceB: "<script>", 
-        choiceC: "<javascript>", 
-        choiceD: "<scripting>",
-        correctAnswer: "B"
+        choices: ["<js>", "<script>", "<javascript>", "<scripting>"],
+        correctAnswer: "<script>",
     },{
         question: "How do you call a function named myFunction?",
-        choiceA: "call function myFunction()", 
-        choiceB: "call myFunction()", 
-        choiceC: "myFunction", 
-        choiceD: "myFunction()",
-        correctAnswer: "D"
+        choices: ["call function myFunction()", "call myFunction()", "myFunction", "myFunction()"],
+        correctAnswer: "myFunction()",
     },{
         question: "How does a FOR loop start?",
-        choiceA: "for (i = 0; i < 5; i++)", 
-        choiceB: "for {i = 0; i < 5; i++}", 
-        choiceC: "for [i = 0; i < 5; i++]", 
-        choiceD: "(for i = 0, i < 5, i++)",
-        correctAnswer: "A"
+        choices: ["for (i = 0; i < 5; i++)", "for {i = 0; i < 5; i++}", "for [i = 0; i < 5; i++]", "(for i = 0, i < 5, i++)"],
+        correctAnswer: "for (i = 0; i < 5; i++)",
     },{
         question: "Which operator is used to assign a value to a variable?",
-        choiceA: "=",
-        choiceB: "X",
-        choiceC: "*",
-        choiceD: "-",
-        correctAnswer: "A"
+        choices: ["=", "X", "*", "-"],
+        correctAnswer: "=",
     }
 ]
 
@@ -157,21 +132,28 @@ function renderQuiz() {
     questionDisplay.innerText = currentQuestion.question; // works shows question on page
 
     console.log(availableQuestions[questionIndex]); // works --- 3 would be jQuery(lastQ) logged jQuery
+    console.log(currentQuestion.choices); // works shows current question and the correct choice array
 
-    // for each loop 
-    currentQuestion.choices.forEach(element => {
+    for (let i = 0; i < currentQuestion.choices.length; i++) {
+        let answer = document.createElement("button");
+        answer.className = "answer";
+        answer.setAttribute("inputmode", "radio")
+        answer.setAttribute("style", "height: 15px; width: 15px; background-color: lightgreen; display: flex; flex-direction: column;")
+        answerDisplay.append(answer);
         
-    });
+    }
+    // for each loop 
+    
 
-    choiceA.innerText = currentQuestion.choiceA;
-    choiceB.innerText = currentQuestion.choiceB;
-    choiceC.innerText = currentQuestion.choiceC;
-    choiceD.innerText = currentQuestion.choiceD;
+    // choiceA.innerText = currentQuestion.choiceA;
+    // choiceB.innerText = currentQuestion.choiceB;
+    // choiceC.innerText = currentQuestion.choiceC;
+    // choiceD.innerText = currentQuestion.choiceD;
     
     // Removes question from array for no repeats.
-    availableQuestions.splice(questionIndex, 1);
+    // availableQuestions.splice(questionIndex, 1);
 
-    acceptingAnswers = true
+    // acceptingAnswers = true
 }
 
 // check answer function
