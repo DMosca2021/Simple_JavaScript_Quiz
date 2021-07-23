@@ -25,8 +25,6 @@
 // stop the quiz once question array is complete or if the timer is === 0
 // once the game is over user can save their score attached with their initials to be stored on the local storage.
 
-// menu for highscore needs to link to a separate html 
-// ---do the same for change of difficulty and bonus quiz
 
 // let corCount = document.querySelector(".correct-answer"); --->for high score page
 // let incorCount = document.querySelector(".incorrect-answer"); ---> for high score page
@@ -135,25 +133,25 @@ function renderQuiz() {
     console.log(currentQuestion.choices); // works shows current question and the correct choice array
 
     for (let i = 0; i < currentQuestion.choices.length; i++) {
+        const answerIndex = currentQuestion.choices[i];
+
         console.log(currentQuestion.choices.length)
+        console.log(currentQuestion.choices[i])
+
         let answer = document.createElement("button");
         answer.className = "answer";
         answer.setAttribute("inputmode", "radio")
-        answer.setAttribute("style", "height: 15px; width: 15px; background-color: lightgreen; display: flex; flex-direction: column;")
-        answer.textContent = currentQuestion.choices
+        answer.innerText = answerIndex
         answerDisplay.append(answer);
         
     }
     // for each loop 
-    
+    console.log(answerDisplay)
 
-    // choiceA.innerText = currentQuestion.choiceA;
-    // choiceB.innerText = currentQuestion.choiceB;
-    // choiceC.innerText = currentQuestion.choiceC;
-    // choiceD.innerText = currentQuestion.choiceD;
+
     
     // Removes question from array for no repeats.
-    // availableQuestions.splice(questionIndex, 1);
+    availableQuestions.splice(questionIndex, 1);
 
     // acceptingAnswers = true
 }
@@ -169,6 +167,6 @@ startBtn.addEventListener("click", startQuiz);
 // `` <---basically if else 
 
 // for (let index = 0; index < array.length; index++) {
-//     const element = array[index];
+//     
     
 // }
