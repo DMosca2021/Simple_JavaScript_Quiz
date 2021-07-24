@@ -102,18 +102,16 @@ function startTimer() {
       timerCount--;
       quizTimer.textContent = timerCount;
       if (timerCount >= 0) {
-        // Tests if win condition is met
         if (isDone && timerCount > 0) {
           // Clears interval and stops timer
           clearInterval(timer);
-        //   winGame();  ----> CHANGE THIS TO STORE REMAINING TIME AS HIGHSCORE
+
         }
       }
       // Tests if time has run out
       if (timerCount === 0) {
         // Clears interval
         clearInterval(timer);
-        // loseGame();  -----> CHANGE THIS TO END/FAIL THE QUIZ 
       }
     }, 1000);
 }
@@ -123,28 +121,31 @@ function renderQuiz() {
     // randomize first question choice
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
 
-    console.log(questionIndex); // logs 3 first time
-
+    console.log(questionIndex); 
     // keep track of current question
     currentQuestion = availableQuestions[questionIndex];
-    questionDisplay.innerText = currentQuestion.question; // works shows question on page
-
-    console.log(availableQuestions[questionIndex]); // works --- 3 would be jQuery(lastQ) logged jQuery
-    console.log(currentQuestion.choices); // works shows current question and the correct choice array
+    questionDisplay.innerText = currentQuestion.question; 
+    console.log(availableQuestions[questionIndex]); // works
+    console.log(currentQuestion.choices); // works 
 
     for (let i = 0; i < currentQuestion.choices.length; i++) {
         const answerIndex = currentQuestion.choices[i];
-
+        // currentQuestion.choices[i].onclick = function() {
+        //     console.log("hello");
+        // }
         console.log(currentQuestion.choices.length)
         console.log(currentQuestion.choices[i])
 
         let answer = document.createElement("button");
         answer.className = "answer";
         answer.setAttribute("inputmode", "radio")
-        answer.innerText = answerIndex
+        answer.textContent = answerIndex
+        answer.addEventListener("click", console.log("hello"));
         answerDisplay.append(answer);
         
     }
+
+   
     // for each loop 
     console.log(answerDisplay)
 
@@ -156,17 +157,30 @@ function renderQuiz() {
     // acceptingAnswers = true
 }
 
-// check answer function
+
+// // check answer function
+// function checkAnswer() {
+//     if ()
+// }
+
 
 // function to end quiz
+function endQuiz(){
+    if (questionIndex > 4 || timerCount == 0) {
+        isDone = true;
+        startBtn.disabled = false;
+        
+    }
+} 
 
 // function to handle local storage 
 
+
+
 startBtn.addEventListener("click", startQuiz);
 
-// `` <---basically if else 
-
-// for (let index = 0; index < array.length; index++) {
-//     
-    
+// for(var i = 0, max = radios.length; i < max; i++) {
+//     radios[i].onclick = function() {
+//         alert(this.value);
+//     }
 // }
