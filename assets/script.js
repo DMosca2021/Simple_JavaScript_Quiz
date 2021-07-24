@@ -104,58 +104,55 @@ function startTimer() {
       if (timerCount >= 0) {
         if (isDone && timerCount > 0) {
           // Clears interval and stops timer
-          clearInterval(timer);
+          clearInterval(timer)
 
         }
-      }
+      };
       // Tests if time has run out
       if (timerCount === 0) {
         // Clears interval
-        clearInterval(timer);
-      }
-    }, 1000);
-}
+        clearInterval(timer)
+      };
+    }, 1000)
+};
 
 // Creates quiz on screen
 function renderQuiz() {
     // randomize first question choice
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
 
-    console.log(questionIndex); 
     // keep track of current question
     currentQuestion = availableQuestions[questionIndex];
     questionDisplay.innerText = currentQuestion.question; 
-    console.log(availableQuestions[questionIndex]); // works
-    console.log(currentQuestion.choices); // works 
 
     for (let i = 0; i < currentQuestion.choices.length; i++) {
         const answerIndex = currentQuestion.choices[i];
-        // currentQuestion.choices[i].onclick = function() {
-        //     console.log("hello");
-        // }
+    
         console.log(currentQuestion.choices.length)
         console.log(currentQuestion.choices[i])
 
         let answer = document.createElement("button");
         answer.className = "answer";
-        // answer.setAttribute("inputmode", "radio")
         answer.textContent = answerIndex
-        answer.addEventListener("click", console.log("hello")); //works? console logs hello for each answer
+        answer.setAttribute("value", "false")
+        // answer.addEventListener("click" function); //checkAnswer )
         answerDisplay.append(answer);
-        
-    }
+    };
+    
 
-    // Removes question from array for no repeats.
-    availableQuestions.splice(questionIndex, 1);
+    // answer.addEventListener("click", checkAnswer)
 
-    // acceptingAnswers = true
-}
+    // function checkAnswer() {
+    //     let chosenAnswer = userInput
+    //     if (currentQuestion.correctAnswer == chosenAnswer) {
+    //         questionIndex++
+    //     }
+    // }
 
 
-// // // check answer function
-// function checkAnswer() {
-//     if ()
-// }
+
+};
+
 
 
 // function to end quiz
@@ -163,18 +160,15 @@ function endQuiz(){
     if (questionIndex > 4 || timerCount == 0) {
         isDone = true;
         startBtn.disabled = false;
-        
+        if (timerCount > 0) {
+            timerCount == highscore
+        }
+        return;
     }
-} 
+};
 
 // function to handle local storage 
 
 
 
 startBtn.addEventListener("click", startQuiz);
-
-// for(var i = 0, max = radios.length; i < max; i++) {
-//     radios[i].onclick = function() {
-//         alert(this.value);
-//     }
-// }
