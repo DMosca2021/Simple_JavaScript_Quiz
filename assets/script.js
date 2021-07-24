@@ -145,12 +145,6 @@ function renderQuiz() {
         
     }
 
-   
-    // for each loop 
-    console.log(answerDisplay)
-
-
-    
     // Removes question from array for no repeats.
     availableQuestions.splice(questionIndex, 1);
 
