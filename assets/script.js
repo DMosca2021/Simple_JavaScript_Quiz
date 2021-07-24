@@ -34,11 +34,6 @@ let quizTimer = document.querySelector(".quiz-timer");
 let quizArea = document.querySelector(".quiz-area");
 let questionDisplay = document.querySelector("#question");
 let answerDisplay = document.querySelector("#answers");
-let choiceA = document.querySelector("#A")
-let choiceB = document.querySelector("#B")
-let choiceC = document.querySelector("#C")
-let choiceD = document.querySelector("#D")
-let submitBtn = document.querySelector(".submit-btn");
 
 let correctCount = 0;
 let incorrectCount = 0;
@@ -127,15 +122,19 @@ function renderQuiz() {
         console.log(currentQuestion.choices[i])
 
         let answer = document.createElement("button");
-        answer.className = "answer";
+        answer.id = "answer";
         answer.textContent = answerIndex
         answer.setAttribute("value", "false")
         // answer.addEventListener("click" function(checkAnswer))
         answerDisplay.append(answer);
+
+        console.log(answer.id)
     };
     
-
-    // answer.addEventListener("click", checkAnswer)
+    let answerBtn = document.querySelector("#answer")
+    answer.addEventListener("click", function(event) {
+        
+    })
 
     // function checkAnswer() {
     //     let chosenAnswer = userInput

@@ -132,11 +132,11 @@ main {
     border: 1px solid black;
     border-radius: 15px;
     padding: 25px;
-    margin-left: 170px;
+    margin-left: 160px;
     width: 75%;
 }
 
-.answer {
+#answer {
     color: black;
     background-color: lightgreen;
     font-weight: bold;
@@ -154,6 +154,6 @@ main {
     align-items: center;
 }
 
-.answer:hover {
+#answer:hover {
     border-color: yellow;
 }
