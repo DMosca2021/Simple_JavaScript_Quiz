@@ -138,9 +138,9 @@ function renderQuiz() {
 
         let answer = document.createElement("button");
         answer.className = "answer";
-        answer.setAttribute("inputmode", "radio")
+        // answer.setAttribute("inputmode", "radio")
         answer.textContent = answerIndex
-        answer.addEventListener("click", console.log("hello"));
+        answer.addEventListener("click", console.log("hello")); //works? console logs hello for each answer
         answerDisplay.append(answer);
         
     }
@@ -158,7 +158,7 @@ function renderQuiz() {
 }
 
 
-// // check answer function
+// // // check answer function
 // function checkAnswer() {
 //     if ()
 // }
