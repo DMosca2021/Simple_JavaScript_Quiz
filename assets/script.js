@@ -50,7 +50,7 @@ let availableQuestions = [];
 let questionsArray = [
     {
         question: "Where in the HTML does the JavaScript link go?",
-        choices: ["In the head with the CSS link.", "Where ever you want, location does not matter.", "At the bottom of the body.", "You do not need to link JavaScript, it's already built in."] ,
+        choices: ["In the head with the CSS link.", "Where ever you want, location does not matter.", "At the bottom of the body.", "You do not need to link JavaScript."] ,
         correctAnswer: "At the bottom of the body."
     },{
         question: "Inside which HTML element do we put the JavaScript?",
@@ -131,10 +131,13 @@ function renderQuiz() {
         console.log(answer.id)
     };
     
-    let answerBtn = document.querySelector("#answer")
-    answer.addEventListener("click", function(event) {
+    let answerBtn = document.querySelectorAll("#answer")
+
+    console.log(answerBtn);
+    
+    // answer.addEventListener("click", function(event) {
         
-    })
+    // })
 
     // function checkAnswer() {
     //     let chosenAnswer = userInput
