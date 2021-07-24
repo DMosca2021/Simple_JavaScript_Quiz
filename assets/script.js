@@ -95,22 +95,17 @@ function startQuiz() {
     startTimer();
 };
 
-// The setTimer function starts and stops the timer, will trigger *(winGame() and loseGame())* <----replace functions to store time as score and end/fail quiz.
+// The setTimer function starts and stops the timer
 function startTimer() {
-    // Sets timer
     timer = setInterval(function() {
       timerCount--;
       quizTimer.textContent = timerCount;
       if (timerCount >= 0) {
         if (isDone && timerCount > 0) {
-          // Clears interval and stops timer
           clearInterval(timer)
-
         }
       };
-      // Tests if time has run out
       if (timerCount === 0) {
-        // Clears interval
         clearInterval(timer)
       };
     }, 1000)
@@ -135,7 +130,7 @@ function renderQuiz() {
         answer.className = "answer";
         answer.textContent = answerIndex
         answer.setAttribute("value", "false")
-        // answer.addEventListener("click" function); //checkAnswer )
+        // answer.addEventListener("click" function(checkAnswer))
         answerDisplay.append(answer);
     };
     
@@ -145,8 +140,11 @@ function renderQuiz() {
     // function checkAnswer() {
     //     let chosenAnswer = userInput
     //     if (currentQuestion.correctAnswer == chosenAnswer) {
+        //   alert(correct)
     //         questionIndex++
-    //     }
+    //          correctCount++
+    //          localStorage.setItem("correctCount", correctCount)
+    //     } else {}
     // }
 
 
@@ -162,6 +160,7 @@ function endQuiz(){
         startBtn.disabled = false;
         if (timerCount > 0) {
             timerCount == highscore
+            localStorage.setItem("Score", highscore)
         }
         return;
     }
