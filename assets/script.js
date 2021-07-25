@@ -120,15 +120,12 @@ function renderQuiz() {
 
     for (let i = 0; i < currentQuestion.choices.length; i++) {
         const answerIndex = currentQuestion.choices[i];
-
-        console.log(currentQuestion.choices.length)
         console.log(currentQuestion.choices[i])
 
         let answer = document.createElement("button");
         answer.id = "answer";
         answer.textContent = answerIndex
         answer.setAttribute("value", "false")
-        answer.addEventListener("click", checkAnswer, true);
         answerDisplay.append(answer);
 
         if (i > 4) {
@@ -136,27 +133,61 @@ function renderQuiz() {
         }
     };
 
-    console.log(answer);
-    console.log(answer[0]);
-    console.log(currentQuestion.correctAnswer);
+
+    console.log(answer); //shows HTMLCollection of button#answer
+    console.log(answer[0]); // shows correct answer button
+    console.log(currentQuestion.correctAnswer); //shows current correct answer 
+    
     
     let answerChoice = document.querySelectorAll("#answer");
+    let correctChoice = currentQuestion.correctAnswer
+    
+    console.log(correctChoice) // shows current correct answer
 
-    console.log(answerChoice)
+    console.log(answerChoice) // shows NodeList of button#answer
 
-    function checkAnswer() {
-        if (currentQuestion.correctAnswer == answerChoice) {
-            alert("correct")
-              questionIndex++
-               correctCount++
-               localStorage.setItem("correctCount", correctCount)
-        } else {
-              alert("incorrect")
-              incorrectCount++
-              localStorage.setItem("incorrectCount", incorrectCount)
+    // Listen for any clicks within the img-container div
+    answerDisplay.addEventListener("click", function(event) {
+        let element = event.target;
+  
+        // Check if the clicked element was an image
+        if (element.matches("button")) {
+        // Get the current value of the image's data-state attribute
+            let answerValue = element.getAttribute("value");
+            console.log(answerValue); //shows 
+
+
+        //   if (text === "still") {
+        // Change the data-state attribute's value
+        // There are two different ways this attribute can be set
+        // element.dataset.state = "animate";
+        // element.setAttribute("data-state", "animate");
+  
+        // Update the image's source to the string being stored in the data-animate attribute
+        // element.setAttribute("src", element.dataset.animate);
+        //   } else {
+        // Change the attributes back to their non-animated values
+        // element.dataset.state = "still";
+        // element.setAttribute("src", element.dataset.still);
         }
-        return;
-    }
+    });
+
+
+
+
+    // function checkAnswer() {
+    //     if (currentQuestion.correctAnswer == answerChoice) {
+    //         alert("correct")
+    //           questionIndex++
+    //            correctCount++
+    //            localStorage.setItem("correctCount", correctCount)
+    //     } else {
+    //           alert("incorrect")
+    //           incorrectCount++
+    //           localStorage.setItem("incorrectCount", incorrectCount)
+    //     }
+    //     return;
+    // }
 
 };
 
