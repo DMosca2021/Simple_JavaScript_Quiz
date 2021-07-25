@@ -75,6 +75,7 @@ let questionsArray = [
 ]
 
 
+
 // The init function is called when the page loads 
 function init() {
     getCorrect();
@@ -120,13 +121,22 @@ function renderQuiz() {
 
     for (let i = 0; i < currentQuestion.choices.length; i++) {
         const answerIndex = currentQuestion.choices[i];
-        console.log(currentQuestion.choices[i])
+
+        console.log(currentQuestion.choices[i]) //Logs the choices for the current question
 
         let answer = document.createElement("button");
         answer.id = "answer";
         answer.textContent = answerIndex
         answer.setAttribute("value", "false")
         answerDisplay.append(answer);
+    
+        currentQuestion.choices.forEach(element => {
+            if (currentQuestion.choices[i] === currentQuestion.correctAnswer) {
+                console.log("correct answer")
+                
+            }
+        });
+        
 
         if (i > 4) {
             return;
@@ -154,9 +164,13 @@ function renderQuiz() {
         if (element.matches("button")) {
         // Get the current value of the image's data-state attribute
             let answerValue = element.getAttribute("value");
-            console.log(answerValue); //shows 
+            console.log(answerValue); //shows the false value for the choices 
+        }
+    });
 
-
+    // answerChoice.forEach(element => {
+            
+    //     });
         //   if (text === "still") {
         // Change the data-state attribute's value
         // There are two different ways this attribute can be set
@@ -169,8 +183,8 @@ function renderQuiz() {
         // Change the attributes back to their non-animated values
         // element.dataset.state = "still";
         // element.setAttribute("src", element.dataset.still);
-        }
-    });
+        
+    
 
 
 
