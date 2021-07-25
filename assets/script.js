@@ -35,7 +35,7 @@ let quizArea = document.querySelector(".quiz-area");
 let questionDisplay = document.querySelector("#question");
 let answerDisplay = document.querySelector("#answers");
 
-let answer = document.createElement("button");
+// let answer = document.createElement("button");
 
 
 let correctCount = 0;
@@ -120,30 +120,26 @@ function renderQuiz() {
 
     for (let i = 0; i < currentQuestion.choices.length; i++) {
         const answerIndex = currentQuestion.choices[i];
+
         console.log(currentQuestion.choices.length)
         console.log(currentQuestion.choices[i])
+
+        let answer = document.createElement("button");
+        answer.id = "answer";
+        answer.textContent = answerIndex
+        answer.setAttribute("value", "false")
+        // answer.addEventListener("click", checkAnswer);
+        answerDisplay.append(answer);
+
         if (i > 4) {
-            return answerIndex;
+            return;
         }
     };
 
-
-    // let answer = document.createElement("button");
-    // answer.id = "answer";
-    // answer.textContent = answerIndex
-    // answer.setAttribute("value", "false")
-    // answer.addEventListener("click" function(checkAnswer))
-    // answerDisplay.append(answer);
-        
-
-    // console.log(answer.id)
-    // console.log(answer.value);
-
-    
+    console.log(answer);
+    console.log(answer[0])
     
     // let answerBtn = document.querySelectorAll("#answer")
-
-    // console.log(answer.value);
     
     // answer.addEventListener("click", function(event) {
         
@@ -165,18 +161,18 @@ function renderQuiz() {
 
 
 
-// function to end quiz
-function endQuiz(){
-    if (questionIndex > 4 || timerCount == 0) {
-        isDone = true;
-        startBtn.disabled = false;
-        if (timerCount > 0) {
-            timerCount == highscore
-            localStorage.setItem("Score", highscore)
-        }
-        return;
-    }
-};
+// // function to end quiz
+// function endQuiz(){
+//     if (questionIndex > 4 || timerCount == 0) {
+//         isDone = true;
+//         startBtn.disabled = false;
+//         if (timerCount > 0) {
+//             timerCount == highscore
+//             localStorage.setItem("Score", highscore)
+//         }
+//         return;
+//     }
+// };
 
 // function to handle local storage 
 
