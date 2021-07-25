@@ -116,7 +116,7 @@ function renderQuiz() {
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
 
     // keep track of current question
-    currentQuestion = availableQuestions[questionIndex];
+    let currentQuestion = availableQuestions[questionIndex];
     questionDisplay.innerText = currentQuestion.question; 
 
     for (let i = 0; i < currentQuestion.choices.length; i++) {
@@ -133,7 +133,8 @@ function renderQuiz() {
         currentQuestion.choices.forEach(element => {
             if (currentQuestion.choices[i] === currentQuestion.correctAnswer) {
                 console.log("correct answer")
-                
+                answer.setAttribute("value", "true")
+                console.log(answer.value)
             }
         });
         
@@ -145,7 +146,10 @@ function renderQuiz() {
 
 
     console.log(answer); //shows HTMLCollection of button#answer
-    console.log(answer[0]); // shows correct answer button
+    console.log(answer[0]); // shows answer button
+    console.log(answer[1]);
+    console.log(answer[2]);
+    console.log(answer[3]);
     console.log(currentQuestion.correctAnswer); //shows current correct answer 
     
     
@@ -156,50 +160,37 @@ function renderQuiz() {
 
     console.log(answerChoice) // shows NodeList of button#answer
 
+    function checkAnswer() {
     // Listen for any clicks within the img-container div
-    answerDisplay.addEventListener("click", function(event) {
-        let element = event.target;
-  
-        // Check if the clicked element was an image
-        if (element.matches("button")) {
-        // Get the current value of the image's data-state attribute
-            let answerValue = element.getAttribute("value");
-            console.log(answerValue); //shows the false value for the choices 
-        }
-    });
+        answerDisplay.addEventListener("click", function(event) {
+            let element = event.target;
 
-    // answerChoice.forEach(element => {
+            if (element.matches("button")) {
+                let answerValue = element.getAttribute("value");
+                console.log (answerValue); //console log shows the false value for the choices 
+                if (answerValue === true){
+                    alert("correct")
+                    questionIndex++
+                    correctCount++
+                    localStorage.setItem("correctCount", correctCount)
+                } else {
+                    alert("incorrect")
+                    incorrectCount++
+                    localStorage.setItem("incorrectCount", incorrectCount)
+                }
+            }
             
-    //     });
-        //   if (text === "still") {
-        // Change the data-state attribute's value
-        // There are two different ways this attribute can be set
-        // element.dataset.state = "animate";
-        // element.setAttribute("data-state", "animate");
-  
-        // Update the image's source to the string being stored in the data-animate attribute
-        // element.setAttribute("src", element.dataset.animate);
-        //   } else {
-        // Change the attributes back to their non-animated values
-        // element.dataset.state = "still";
-        // element.setAttribute("src", element.dataset.still);
+        });
+    }
         
-    
+    checkAnswer();
 
 
 
 
     // function checkAnswer() {
     //     if (currentQuestion.correctAnswer == answerChoice) {
-    //         alert("correct")
-    //           questionIndex++
-    //            correctCount++
-    //            localStorage.setItem("correctCount", correctCount)
-    //     } else {
-    //           alert("incorrect")
-    //           incorrectCount++
-    //           localStorage.setItem("incorrectCount", incorrectCount)
-    //     }
+    //         
     //     return;
     // }
 
