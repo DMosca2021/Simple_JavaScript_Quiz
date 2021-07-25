@@ -128,7 +128,7 @@ function renderQuiz() {
         answer.id = "answer";
         answer.textContent = answerIndex
         answer.setAttribute("value", "false")
-        // answer.addEventListener("click", checkAnswer);
+        answer.addEventListener("click", checkAnswer, true);
         answerDisplay.append(answer);
 
         if (i > 4) {
@@ -138,24 +138,25 @@ function renderQuiz() {
 
     console.log(answer);
     console.log(answer[0]);
-    
     console.log(currentQuestion.correctAnswer);
     
-    // answer.addEventListener("click", function(event) {
-        
-    // })
+    let answerChoice = document.querySelectorAll("#answer");
 
-    // function checkAnswer() {
-    
-    //     if (currentQuestion.correctAnswer == ) {
-    //       alert(correct)
-    //         questionIndex++
-    //          correctCount++
-    //          localStorage.setItem("correctCount", correctCount)
-    //     } else {}
-    // }
+    console.log(answerChoice)
 
-
+    function checkAnswer() {
+        if (currentQuestion.correctAnswer == answerChoice) {
+            alert("correct")
+              questionIndex++
+               correctCount++
+               localStorage.setItem("correctCount", correctCount)
+        } else {
+              alert("incorrect")
+              incorrectCount++
+              localStorage.setItem("incorrectCount", incorrectCount)
+        }
+        return;
+    }
 
 };
 
