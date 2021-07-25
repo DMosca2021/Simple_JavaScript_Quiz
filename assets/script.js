@@ -137,18 +137,18 @@ function renderQuiz() {
     };
 
     console.log(answer);
-    console.log(answer[0])
+    console.log(answer[0]);
     
-    // let answerBtn = document.querySelectorAll("#answer")
+    console.log(currentQuestion.correctAnswer);
     
     // answer.addEventListener("click", function(event) {
         
     // })
 
     // function checkAnswer() {
-    //
-    //     if (currentQuestion.correctAnswer == chosenAnswer) {
-        //   alert(correct)
+    
+    //     if (currentQuestion.correctAnswer == ) {
+    //       alert(correct)
     //         questionIndex++
     //          correctCount++
     //          localStorage.setItem("correctCount", correctCount)
