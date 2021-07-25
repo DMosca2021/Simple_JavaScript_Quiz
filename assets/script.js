@@ -35,9 +35,6 @@ let quizArea = document.querySelector(".quiz-area");
 let questionDisplay = document.querySelector("#question");
 let answerDisplay = document.querySelector("#answers");
 
-// let answer = document.createElement("button");
-
-
 let correctCount = 0;
 let incorrectCount = 0;
 let highscore = 0;
@@ -144,20 +141,10 @@ function renderQuiz() {
         }
     };
 
-
-    console.log(answer); //shows HTMLCollection of button#answer
-    console.log(answer[0]); // shows answer button
-    console.log(answer[1]);
-    console.log(answer[2]);
-    console.log(answer[3]);
-    console.log(currentQuestion.correctAnswer); //shows current correct answer 
-    
-    
     let answerChoice = document.querySelectorAll("#answer");
     let correctChoice = currentQuestion.correctAnswer
     
     console.log(correctChoice) // shows current correct answer
-
     console.log(answerChoice) // shows NodeList of button#answer
 
     function checkAnswer() {
@@ -168,9 +155,9 @@ function renderQuiz() {
             if (element.matches("button")) {
                 let answerValue = element.getAttribute("value");
                 console.log (answerValue); //console log shows the false value for the choices 
-                if (answerValue === true){
+                if (answerValue === "true"){
                     alert("correct")
-                    questionIndex++
+                    currentQuestion++
                     correctCount++
                     localStorage.setItem("correctCount", correctCount)
                 } else {
@@ -186,13 +173,6 @@ function renderQuiz() {
     checkAnswer();
 
 
-
-
-    // function checkAnswer() {
-    //     if (currentQuestion.correctAnswer == answerChoice) {
-    //         
-    //     return;
-    // }
 
 };
 
