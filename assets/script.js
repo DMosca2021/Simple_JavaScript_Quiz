@@ -155,10 +155,10 @@ function renderQuiz() {
                     console.log(questionIndex) //Shows change in question index. Question does not change.
 
                     questionDisplay.innerText = currentQuestion.question //Cant get questions to change
-
+                    answerDisplay.textContent = "";
                     correctCount++ // Works: Shows increase in correct answer count when correct answer is chosen.
                     localStorage.setItem("correctCount", correctCount)
-
+                    renderQuiz(); //Not calling renderQuiz function after rendering once, need to call again
                 } else {
                     alert("incorrect")
                     timerCount = timerCount - 10; // Works: Time decreases when incorrect answer is chosen.
