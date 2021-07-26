@@ -35,6 +35,8 @@ let quizArea = document.querySelector(".quiz-area");
 let questionDisplay = document.querySelector("#question");
 let answerDisplay = document.querySelector("#answers");
 
+quizArea.setAttribute("style", "visibility: hidden");
+
 let correctCount = 0;
 let incorrectCount = 0;
 let highscore = 0;
@@ -84,7 +86,7 @@ function startQuiz() {
     highscore = 0
     startBtn.disabled = true;
     availableQuestions = [...questionsArray];
-    quizArea.setAttribute
+    quizArea.setAttribute("style", "visibility: visible");
     renderQuiz();
     startTimer();
 };
@@ -170,20 +172,20 @@ function renderQuiz() {
         
     checkAnswer();
 
-    // // function to end quiz ---- Does not seem to be working. 
-    // questionIndex > 4 ||  <----Was in the first if statement.
-    function endQuiz(){
-        if (timerCount <= 0) {
-            isDone = true;
-            startBtn.disabled = false;
-            alert("Quiz Completed!")
-        }
-        return;
-    };
 };
 
 
-
+    // // function to end quiz ---- Does not seem to be working. 
+    // questionIndex > 4 ||  <----Was in the first if statement.
+function endQuiz(){
+    if (timerCount <= 0) {
+        isDone = true;
+        startBtn.disabled = false;
+        answerDisplay.textContent = "";
+        alert("Quiz Completed!") 
+    }
+    return;
+};
 
 
 // function to handle local storage 
