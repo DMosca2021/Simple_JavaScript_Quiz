@@ -40,10 +40,8 @@ let incorrectCount = 0;
 let highscore = 0;
 let timer;
 let timerCount;
-let penaltyTime = 10;
 
 let currentQuestion = {};
-let correctAnswers = true
 let availableQuestions = [];
 
 // questions array 
@@ -82,11 +80,10 @@ function init() {
 // The startQuiz function is called when the start button is clicked, starts timer and shows quiz
 function startQuiz() {
     isDone = false;
-    timerCount = 300;
+    timerCount = 120;
     highscore = 0
     startBtn.disabled = true;
     availableQuestions = [...questionsArray];
-    console.log(availableQuestions);
     renderQuiz();
     startTimer();
 };
@@ -107,18 +104,17 @@ function startTimer() {
     }, 1000)
 };
 
-// Creates quiz on screen
+// Creates quiz on screen, creates answer choices, checks answers and moves to next question. 
 function renderQuiz() {
-    // randomize first question choice
-    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-
-    // keep track of current question
+    let questionIndex = Math.floor(Math.random() * availableQuestions.length);
     let currentQuestion = availableQuestions[questionIndex];
     questionDisplay.innerText = currentQuestion.question; 
 
-    for (let i = 0; i < currentQuestion.choices.length; i++) {
-        const answerIndex = currentQuestion.choices[i];
+    console.log(questionIndex) // Shows first question index
 
+    for (let i = 0; i < currentQuestion.choices.length; i++) {
+        let answerIndex = currentQuestion.choices[i];
+        console.log(answerIndex);
         console.log(currentQuestion.choices[i]) //Logs the choices for the current question
 
         let answer = document.createElement("button");
@@ -129,39 +125,36 @@ function renderQuiz() {
     
         currentQuestion.choices.forEach(element => {
             if (currentQuestion.choices[i] === currentQuestion.correctAnswer) {
-                console.log("correct answer")
                 answer.setAttribute("value", "true")
-                console.log(answer.value)
+                console.log(answer.value) // Shows correct answer value changed to true
             }
         });
-        
-
-        if (i > 4) {
+        if (i > currentQuestion.choices.length) {
             return;
         }
     };
 
-    let answerChoice = document.querySelectorAll("#answer");
-    let correctChoice = currentQuestion.correctAnswer
-    
-    console.log(correctChoice) // shows current correct answer
-    console.log(answerChoice) // shows NodeList of button#answer
-
     function checkAnswer() {
-    // Listen for any clicks within the img-container div
         answerDisplay.addEventListener("click", function(event) {
             let element = event.target;
 
             if (element.matches("button")) {
                 let answerValue = element.getAttribute("value");
-                console.log (answerValue); //console log shows the false value for the choices 
+
+                console.log (answerValue); //console log shows the true/false value for the choices 
+
                 if (answerValue === "true"){
                     alert("correct")
-                    currentQuestion++
+                    questionIndex++
+
+                    questionDisplay.innerText = currentQuestion.question //Cant get questions to change
+                    console.log(questionIndex) //Shows change in question index.
+
                     correctCount++
                     localStorage.setItem("correctCount", correctCount)
                 } else {
                     alert("incorrect")
+                    timerCount = timerCount - 10;
                     incorrectCount++
                     localStorage.setItem("incorrectCount", incorrectCount)
                 }
@@ -172,24 +165,26 @@ function renderQuiz() {
         
     checkAnswer();
 
+    // // function to end quiz
+    function endQuiz(){
+        if (questionIndex > 4 || timerCount == 0) {
+            isDone = true;
+            startBtn.disabled = false;
+            if (timerCount > 0) {
+            timerCount == highscore
+            localStorage.setItem("Score", highscore)
+            }
+            return;
+        }
+    };
 
+    endQuiz();
 
 };
 
 
 
-// // function to end quiz
-// function endQuiz(){
-//     if (questionIndex > 4 || timerCount == 0) {
-//         isDone = true;
-//         startBtn.disabled = false;
-//         if (timerCount > 0) {
-//             timerCount == highscore
-//             localStorage.setItem("Score", highscore)
-//         }
-//         return;
-//     }
-// };
+
 
 // function to handle local storage 
 
