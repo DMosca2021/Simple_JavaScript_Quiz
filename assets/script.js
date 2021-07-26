@@ -84,6 +84,7 @@ function startQuiz() {
     highscore = 0
     startBtn.disabled = true;
     availableQuestions = [...questionsArray];
+    quizArea.setAttribute
     renderQuiz();
     startTimer();
 };
@@ -92,14 +93,17 @@ function startQuiz() {
 function startTimer() {
     timer = setInterval(function() {
       timerCount--;
-      quizTimer.textContent = timerCount;
+      quizTimer.textContent = "Time left: " + timerCount;
       if (timerCount >= 0) {
         if (isDone && timerCount > 0) {
-          clearInterval(timer)
+            timerCount = highscore 
+            console.log(highscore)
+            localStorage.setItem("Score", highscore)
         }
       };
       if (timerCount === 0) {
         clearInterval(timer)
+        endQuiz()
       };
     }, 1000)
 };
@@ -146,16 +150,17 @@ function renderQuiz() {
                 if (answerValue === "true"){
                     alert("correct")
                     questionIndex++
+                    console.log(questionIndex) //Shows change in question index. Question does not change.
 
                     questionDisplay.innerText = currentQuestion.question //Cant get questions to change
-                    console.log(questionIndex) //Shows change in question index.
 
-                    correctCount++
+                    correctCount++ // Works: Shows increase in correct answer count when correct answer is chosen.
                     localStorage.setItem("correctCount", correctCount)
+
                 } else {
                     alert("incorrect")
-                    timerCount = timerCount - 10;
-                    incorrectCount++
+                    timerCount = timerCount - 10; // Works: Time decreases when incorrect answer is chosen.
+                    incorrectCount++ // Works: Shows increase in incorrect answer count when ^^^^^^^^.
                     localStorage.setItem("incorrectCount", incorrectCount)
                 }
             }
@@ -165,21 +170,16 @@ function renderQuiz() {
         
     checkAnswer();
 
-    // // function to end quiz
+    // // function to end quiz ---- Does not seem to be working. 
+    // questionIndex > 4 ||  <----Was in the first if statement.
     function endQuiz(){
-        if (questionIndex > 4 || timerCount == 0) {
+        if (timerCount <= 0) {
             isDone = true;
             startBtn.disabled = false;
-            if (timerCount > 0) {
-            timerCount == highscore
-            localStorage.setItem("Score", highscore)
-            }
-            return;
+            alert("Quiz Completed!")
         }
+        return;
     };
-
-    endQuiz();
-
 };
 
 
