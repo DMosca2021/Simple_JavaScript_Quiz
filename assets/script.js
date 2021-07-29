@@ -39,7 +39,7 @@ quizArea.setAttribute("style", "visibility: hidden");
 
 let correctCount = 0;
 let incorrectCount = 0;
-let highscore = 0;
+let highscore;
 let timer;
 let timerCount;
 
@@ -129,15 +129,11 @@ function renderQuiz() {
         answer.setAttribute("value", "false")
         answerDisplay.append(answer);
     
-        currentQuestion.choices.forEach(element => {
-            if (currentQuestion.choices[i] === currentQuestion.correctAnswer) {
-                answer.setAttribute("value", "true")
-                console.log(answer.value) // Shows correct answer value changed to true
-            }
-        });
-        if (i > currentQuestion.choices.length) {
-            return;
+        if (currentQuestion.choices[i] === currentQuestion.correctAnswer) {
+            answer.setAttribute("value", "true")
+            console.log(answer.value) // Shows correct answer value changed to true
         }
+        
     };
 
     function checkAnswer() {
@@ -152,13 +148,13 @@ function renderQuiz() {
                 if (answerValue === "true"){
                     alert("correct")
                     questionIndex++
-                    console.log(questionIndex) //Shows change in question index. Question does not change.
-
+                    console.log(questionIndex) //Shows change in question index.
                     questionDisplay.innerText = currentQuestion.question //Cant get questions to change
+                    console.log(currentQuestion.question)
                     answerDisplay.textContent = "";
                     correctCount++ // Works: Shows increase in correct answer count when correct answer is chosen.
                     localStorage.setItem("correctCount", correctCount)
-                    renderQuiz(); //Not calling renderQuiz function after rendering once, need to call again
+                    renderQuiz(); 
                 } else {
                     alert("incorrect")
                     timerCount = timerCount - 10; // Works: Time decreases when incorrect answer is chosen.
@@ -179,10 +175,14 @@ function renderQuiz() {
     // questionIndex > 4 ||  <----Was in the first if statement.
 function endQuiz(){
     if (timerCount <= 0) {
+        timerCount = highscore
+        localStorage.setItem("highscore", highscore)
         isDone = true;
         startBtn.disabled = false;
         answerDisplay.textContent = "";
+        quizArea.setAttribute("style", "visibility: hidden");
         alert("Quiz Completed!") 
+        
     }
     return;
 };
