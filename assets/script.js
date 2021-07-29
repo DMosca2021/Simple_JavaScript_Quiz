@@ -34,8 +34,11 @@ let quizTimer = document.querySelector(".quiz-timer");
 let quizArea = document.querySelector(".quiz-area");
 let questionDisplay = document.querySelector("#question");
 let answerDisplay = document.querySelector("#answers");
+let scoreEntry = document.querySelector(".highscore-entry")
+let saveBtn = document.querySelector("#save")
 
 quizArea.setAttribute("style", "visibility: hidden");
+scoreEntry.setAttribute("style", "visibility: hidden");
 
 let correctCount = 0;
 let incorrectCount = 0;
@@ -45,6 +48,7 @@ let timerCount;
 
 let currentQuestion = {};
 let availableQuestions = [];
+let questionIndex = Math.floor(Math.random() * availableQuestions.length);
 
 // questions array 
 let questionsArray = [
@@ -82,7 +86,7 @@ function init() {
 // The startQuiz function is called when the start button is clicked, starts timer and shows quiz
 function startQuiz() {
     isDone = false;
-    timerCount = 120;
+    timerCount = 60;
     highscore = 0
     startBtn.disabled = true;
     availableQuestions = [...questionsArray];
@@ -112,7 +116,6 @@ function startTimer() {
 
 // Creates quiz on screen, creates answer choices, checks answers and moves to next question. 
 function renderQuiz() {
-    let questionIndex = Math.floor(Math.random() * availableQuestions.length);
     let currentQuestion = availableQuestions[questionIndex];
     questionDisplay.innerText = currentQuestion.question; 
 
@@ -135,44 +138,50 @@ function renderQuiz() {
         }
         
     };
-
-    function checkAnswer() {
-        answerDisplay.addEventListener("click", function(event) {
-            let element = event.target;
-
-            if (element.matches("button")) {
-                let answerValue = element.getAttribute("value");
-
-                console.log (answerValue); //console log shows the true/false value for the choices 
-
-                if (answerValue === "true"){
-                    alert("correct")
-                    questionIndex++
-                    console.log(questionIndex) //Shows change in question index.
-                    questionDisplay.innerText = currentQuestion.question //Cant get questions to change
-                    console.log(currentQuestion.question)
-                    answerDisplay.textContent = "";
-                    correctCount++ // Works: Shows increase in correct answer count when correct answer is chosen.
-                    localStorage.setItem("correctCount", correctCount)
-                    renderQuiz(); 
-                } else {
-                    alert("incorrect")
-                    timerCount = timerCount - 10; // Works: Time decreases when incorrect answer is chosen.
-                    incorrectCount++ // Works: Shows increase in incorrect answer count when ^^^^^^^^.
-                    localStorage.setItem("incorrectCount", incorrectCount)
-                }
-            }
-            
-        });
-    }
-        
-    checkAnswer();
-
 };
 
+function checkAnswer() {
+    answerDisplay.addEventListener("click", function(event) {
+        let element = event.target;
 
-    // // function to end quiz ---- Does not seem to be working. 
-    // questionIndex > 4 ||  <----Was in the first if statement.
+        if (element.matches("button")) {
+            let answerValue = element.getAttribute("value");
+
+            console.log (answerValue); //console log shows the true/false value for the choices 
+
+            if (answerValue === "true"){
+                alert("correct")
+                questionIndex++
+                if (questionIndex > 4) {
+                    questionIndex = 0
+                }
+                console.log(questionIndex) //Shows change in question index.
+
+                questionDisplay.innerText = currentQuestion.question //Cant get questions to change
+
+                console.log(currentQuestion.question)
+
+                answerDisplay.textContent = "";
+                correctCount++ // Works: Shows increase in correct answer count when correct answer is chosen.
+                if (correctCount > 5) {
+                    endQuiz();
+                }
+                localStorage.setItem("correctCount", correctCount)
+                renderQuiz(); 
+            } else {
+                alert("incorrect")
+                timerCount = timerCount - 10; // Works: Time decreases when incorrect answer is chosen.
+                incorrectCount++ // Works: Shows increase in incorrect answer count when ^^^^^^^^.
+                localStorage.setItem("incorrectCount", incorrectCount)
+            }
+               
+        }
+            
+    });
+}
+
+checkAnswer();
+
 function endQuiz(){
     if (timerCount <= 0) {
         timerCount = highscore
@@ -182,14 +191,36 @@ function endQuiz(){
         answerDisplay.textContent = "";
         quizArea.setAttribute("style", "visibility: hidden");
         alert("Quiz Completed!") 
-        
+        scoreEntry.setAttribute("style", "visibility: visible");
     }
     return;
 };
 
-
 // function to handle local storage 
 
+function saveScore() {
+    // Save related form data as an object
+  let userName = {
+    comment: comment.value.trim()
+  };
+  // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
+  localStorage.setItem("userName", JSON.stringify(userName));
+}
 
+// function to show highscore 
+
+function renderScore() {
+    // Use JSON.parse() to convert text to JavaScript object
+    let lastUser = JSON.parse(localStorage.getItem("userName"));
+    // Check if data is returned, if not exit out of the function
+    if (userName !== null) {
+    document.getElementById("saved-name").innerHTML = lastGrade.userName;
+    document.getElementById("saved-score").innerHTML = lastGrade.highscore;
+    document.getElementById("saved-correct").innerHTML = lastGrade.correctCount;
+    document.getElementById("saved-incorrect").innerHTML = lastGrade.incorrectCount;
+    } else {
+      return;
+    }
+}
 
 startBtn.addEventListener("click", startQuiz);
