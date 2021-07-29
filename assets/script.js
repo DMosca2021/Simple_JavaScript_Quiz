@@ -165,12 +165,6 @@ function checkAnswer() {
 
 checkAnswer();
 
-let storedAnswers = localStorage.getItem("correctCount")
-if (storedAnswers >= 5) {
-
-    endQuiz();
-};
-
 function endQuiz(){
     isDone = true;
     startBtn.disabled = false;
