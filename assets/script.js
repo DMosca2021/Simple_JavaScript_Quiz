@@ -25,10 +25,6 @@
 // stop the quiz once question array is complete or if the timer is === 0
 // once the game is over user can save their score attached with their initials to be stored on the local storage.
 
-
-// let corCount = document.querySelector(".correct-answer"); --->for high score page
-// let incorCount = document.querySelector(".incorrect-answer"); ---> for high score page
-
 let startBtn = document.querySelector(".start-btn");
 let quizTimer = document.querySelector(".quiz-timer");
 let quizArea = document.querySelector(".quiz-area");
@@ -100,14 +96,8 @@ function startTimer() {
     timer = setInterval(function() {
       timerCount--;
       quizTimer.textContent = "Time left: " + timerCount;
-      if (timerCount >= 0) {
-        if (isDone && timerCount > 0) {
-            timerCount = highscore 
-            console.log(highscore)
-            localStorage.setItem("Score", highscore)
-        }
-      };
       if (timerCount === 0) {
+        isDone = true
         clearInterval(timer)
         endQuiz()
       };
@@ -137,7 +127,7 @@ function renderQuiz() {
             console.log(answer.value) // Shows correct answer value changed to true
         }
         
-    };
+    }
 };
 
 function checkAnswer() {
@@ -155,72 +145,71 @@ function checkAnswer() {
                 if (questionIndex > 4) {
                     questionIndex = 0
                 }
-                console.log(questionIndex) //Shows change in question index.
-
-                questionDisplay.innerText = currentQuestion.question //Cant get questions to change
-
+                questionDisplay.innerText = currentQuestion.question 
                 console.log(currentQuestion.question)
-
                 answerDisplay.textContent = "";
-                correctCount++ // Works: Shows increase in correct answer count when correct answer is chosen.
-                if (correctCount > 5) {
-                    endQuiz();
-                }
                 localStorage.setItem("correctCount", correctCount)
+                correctCount++ 
                 renderQuiz(); 
             } else {
                 alert("incorrect")
-                timerCount = timerCount - 10; // Works: Time decreases when incorrect answer is chosen.
-                incorrectCount++ // Works: Shows increase in incorrect answer count when ^^^^^^^^.
+                timerCount = timerCount - 10;
+                incorrectCount++
                 localStorage.setItem("incorrectCount", incorrectCount)
             }
                
         }
             
-    });
-}
+    })
+};
 
 checkAnswer();
 
+let storedAnswers = localStorage.getItem("correctCount")
+if (storedAnswers >= 5) {
+
+    endQuiz();
+};
+
 function endQuiz(){
-    if (timerCount <= 0) {
-        timerCount = highscore
-        localStorage.setItem("highscore", highscore)
-        isDone = true;
-        startBtn.disabled = false;
-        answerDisplay.textContent = "";
-        quizArea.setAttribute("style", "visibility: hidden");
-        alert("Quiz Completed!") 
-        scoreEntry.setAttribute("style", "visibility: visible");
-    }
+    isDone = true;
+    startBtn.disabled = false;
+    answerDisplay.textContent = "";
+    quizArea.setAttribute("style", "visibility: hidden");
+    alert("Quiz Completed!") 
+    scoreEntry.setAttribute("style", "visibility: visible");
+    if (timerCount >= 0) {
+        if (isDone && timerCount > 0) {
+            timerCount = highscore 
+            console.log(highscore)
+            localStorage.setItem("Score", highscore)
+        }
+      };
     return;
 };
 
 // function to handle local storage 
 
 function saveScore() {
-    // Save related form data as an object
   let userName = {
     comment: comment.value.trim()
   };
-  // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
   localStorage.setItem("userName", JSON.stringify(userName));
-}
-
-// function to show highscore 
+};
 
 function renderScore() {
     // Use JSON.parse() to convert text to JavaScript object
     let lastUser = JSON.parse(localStorage.getItem("userName"));
     // Check if data is returned, if not exit out of the function
     if (userName !== null) {
-    document.getElementById("saved-name").innerHTML = lastGrade.userName;
-    document.getElementById("saved-score").innerHTML = lastGrade.highscore;
-    document.getElementById("saved-correct").innerHTML = lastGrade.correctCount;
-    document.getElementById("saved-incorrect").innerHTML = lastGrade.incorrectCount;
+    document.getElementById("saved-name").innerHTML = lastUser.userName;
+    document.getElementById("saved-score").innerHTML = lastUser.highscore;
+    document.getElementById("saved-correct").innerHTML = lastUser.correctCount;
+    document.getElementById("saved-incorrect").innerHTML = lastUser.incorrectCount;
     } else {
       return;
     }
 }
 
 startBtn.addEventListener("click", startQuiz);
+saveBtn.addEventListener("click", saveScore);

@@ -1,7 +1,7 @@
 # JavaScript Quiz Week 4 Homework
 
 ## Description
-The goal of this homework was to showcase my knowledge of JavaScript functions, traversing the DOM, and using JavaScript to manipulate HTML and CSS. I used this knowledge to creat a simple multiple choice quiz with questions based on the fundamentals of JavaScript. I found this homework to be the most challenging part of the bootcamp thus far. I plan on revisiting this homework and updating it with more questions and features to help solidify my understanding of JavaScript.
+The goal of this homework was to showcase my knowledge of JavaScript functions, traversing the DOM, and using JavaScript to manipulate HTML and CSS. I used this knowledge to creat a simple multiple choice quiz with questions based on the fundamentals of JavaScript. I found this homework to be the most challenging part of the bootcamp thus far. I plan on revisiting this homework and updating it with more questions and features to help solidify my understanding of JavaScript. 
 
 ## Tasks Completed 
 - GIVEN I am taking a code quiz
@@ -14,7 +14,7 @@ The goal of this homework was to showcase my knowledge of JavaScript functions, 
 - WHEN all questions are answered or the timer reaches 0
 - THEN the game is over
 - WHEN the game is over
-- THEN I can save my initials and my score
+- THEN I can save my initials and my score -- Currently not working
 
 ## To access the Quiz. 
 Click on the deployed link to bring you to the homepage for the JavaScript Quiz.
