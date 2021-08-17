@@ -29,7 +29,7 @@ let saveBtn = document.querySelector("#save")
 quizArea.setAttribute("style", "visibility: hidden");
 scoreEntry.setAttribute("style", "visibility: hidden");
 
-let highscore;
+let highscore = 0;
 let timer;
 let timerCount;
 
@@ -104,27 +104,21 @@ function startTimer() {
 function renderQuiz() {
     let currentQuestion = availableQuestions[questionIndex];
     let lastQuestion = availableQuestions.length - 1;
-    console.log(lastQuestion);
     questionDisplay.innerText = currentQuestion.question; 
-    console.log(questionIndex) // Shows first question index
-
     for (let i = 0; i < currentQuestion.choices.length; i++) {
         let answerIndex = currentQuestion.choices[i];
-        console.log(answerIndex);
-        console.log(currentQuestion.choices[i]) //Logs the choices for the current question
-
         let answer = document.createElement("button");
         answer.id = "answer";
         answer.textContent = answerIndex
         answer.setAttribute("value", "false")
         answerDisplay.append(answer);
-    
         if (currentQuestion.choices[i] === currentQuestion.correctAnswer) {
             answer.setAttribute("value", "true")
-            console.log(answer.value) // Shows correct answer value changed to true
         }
     }
     if (questionIndex === lastQuestion) {
+        timerCount = highscore 
+        console.log(highscore)
         endQuiz()
     }
 };
@@ -168,15 +162,8 @@ function endQuiz(){
     answerDisplay.textContent = "";
     quizArea.setAttribute("style", "visibility: hidden");
     alert("Quiz Completed!") 
-    scoreEntry.setAttribute("style", "visibility: visible");
-    if (timerCount > 0) {
-        if (isDone && timerCount > 0) {
-            timerCount = highscore 
-            console.log(highscore)
-            localStorage.setItem("Score", highscore)
-        }
-      };
-    return;
+    scoreEntry.setAttribute("style", "visibility: visible");  
+    localStorage.setItem("score", highscore)
 };
 
 startBtn.addEventListener("click", startQuiz);
@@ -185,5 +172,5 @@ startBtn.addEventListener("click", startQuiz);
 saveBtn.addEventListener("click", function(event) {
     event.preventDefault();
     let userName = document.querySelector("#msg").value.trim();
-    localStorage.setItem("Name", JSON.stringify(userName));
+    localStorage.setItem("userName", JSON.stringify(userName));
 });

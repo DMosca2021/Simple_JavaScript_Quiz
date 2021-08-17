@@ -4,6 +4,10 @@ let savedCorrect = document.querySelector("#saved-correct")
 let savedIncorrect = document.querySelector("#saved-incorrect")
 let scoreBtn = document.querySelector("#show-score")
 
+let scoreDisplay = document.querySelector(".score-area")
+
+scoreDisplay.setAttribute("style", "visibility: hidden")
+
 function renderScore() {
     // Use JSON.parse() to convert text to JavaScript object
     let lastUser = JSON.parse(localStorage.getItem("userName"));
@@ -14,17 +18,14 @@ function renderScore() {
     console.log(lastScore);
     console.log(lastCorrect);
     console.log(lastIncorrect);
-
-    // Check if data is returned, if not exit out of the function
-    if (userName !== null) {
-    // document.getElementById("saved-name").innerHTML = lastUser.userName;
-    // document.getElementById("saved-score").innerHTML = lastUser.highscore;
-    // document.getElementById("saved-correct").innerHTML = lastUser.correctCount;
-    // document.getElementById("saved-incorrect").innerHTML = lastUser.incorrectCount;
-
-    } else {
-      return;
-    }
+    savedName.innerHTML = lastUser
+    savedScore.innerHTML = lastScore
+    savedCorrect.innerHTML = lastCorrect
+    savedIncorrect.innerHTML = lastIncorrect
 }
 
-scoreBtn.addEventListener("click", renderScore)
+scoreBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    scoreDisplay.setAttribute("style", "visibility: visible")
+    renderScore();
+});
