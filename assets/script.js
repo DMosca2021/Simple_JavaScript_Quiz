@@ -44,7 +44,8 @@ let timerCount;
 
 let currentQuestion = {};
 let availableQuestions = [];
-let questionIndex = Math.floor(Math.random() * availableQuestions.length);
+// let questionIndex = Math.floor(Math.random() * availableQuestions.length);
+let questionIndex = 0;
 
 // questions array 
 let questionsArray = [
@@ -68,6 +69,10 @@ let questionsArray = [
         question: "Which operator is used to assign a value to a variable?",
         choices: ["=", "X", "*", "-"],
         correctAnswer: "=",
+    },{
+        question: "End of quiz placeholder",
+        choices: "End of quiz placeholder",
+        correctAnswer: "End of quiz placeholder",
     }
 ]
 
@@ -107,8 +112,9 @@ function startTimer() {
 // Creates quiz on screen, creates answer choices, checks answers and moves to next question. 
 function renderQuiz() {
     let currentQuestion = availableQuestions[questionIndex];
+    let lastQuestion = availableQuestions.length - 1;
+    console.log(lastQuestion);
     questionDisplay.innerText = currentQuestion.question; 
-
     console.log(questionIndex) // Shows first question index
 
     for (let i = 0; i < currentQuestion.choices.length; i++) {
@@ -126,7 +132,9 @@ function renderQuiz() {
             answer.setAttribute("value", "true")
             console.log(answer.value) // Shows correct answer value changed to true
         }
-        
+    }
+    if (questionIndex === lastQuestion) {
+        endQuiz()
     }
 };
 
@@ -142,9 +150,9 @@ function checkAnswer() {
             if (answerValue === "true"){
                 alert("correct")
                 questionIndex++
-                if (questionIndex > 4) {
-                    questionIndex = 0
-                }
+                // if (questionIndex > 4) {
+                //     questionIndex = 0
+                // }
                 questionDisplay.innerText = currentQuestion.question 
                 console.log(currentQuestion.question)
                 answerDisplay.textContent = "";
@@ -157,9 +165,7 @@ function checkAnswer() {
                 incorrectCount++
                 localStorage.setItem("incorrectCount", incorrectCount)
             }
-               
         }
-            
     })
 };
 
@@ -206,4 +212,4 @@ function renderScore() {
 }
 
 startBtn.addEventListener("click", startQuiz);
-saveBtn.addEventListener("click", saveScore);
+saveBtn.addEventListener("click", saveScore());
