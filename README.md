@@ -26,7 +26,7 @@ Click on the deployed link to bring you to the homepage for the JavaScript Quiz.
 
 Hit the start button. You will be presented with a multiple choice question. Answer to the best of your knowledge. You will be timed during the quiz and the remaining time when you complete your quiz will be your end score. For every question you answer incorrect you will be deducted 10 seconds until the correct answer is chosen or time runs out. At completion of the quiz your end score will be calculated and you will be able to store it for future benchmarking of your JavaScript knowledge. 
 
-![Screenshot]()
+![Screenshot](./assets/images/JSquiz_scrnsht.png)
 
 ## Credits
 
