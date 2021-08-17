@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./assets/style.css">
     <title>Highscores</title>
 </head>
 <body>
@@ -17,19 +17,21 @@
             <div class="game-menu">
                 <button class="drop-menu">Game Menu</button>
                 <div class="drop-content">
-                    <a href="C:\Users\devin\dubootcamp\homework\week4\dm_hwk_wk4_quiz\index.html">Home</a>
+                    <a href="index.html">Home</a>
                 </div>
             </div>
         </section>
     </nav>
     <main>
-        <div class="card">
-            <h2>Last Saved Grade</h2>
+        <button class="btn" id="show-score">Show score</button>
+        <div class="score-area">
+            <h2>Last Saved Score</h2>
             <p>Name: <span id="saved-name"></span></p>
             <p>Score: <span id="saved-score"></span></p>
             <p>Correct answers: <span id="saved-correct"></span></p>
             <p>Incorrect answers: <span id="saved-incorrect"></span></p>
           </div>
-    </main>    
+    </main> 
+    <script src="./assets/script.js"></script>   
 </body>
 </html>

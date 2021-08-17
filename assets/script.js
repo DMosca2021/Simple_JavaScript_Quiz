@@ -17,15 +17,8 @@
 
 
 //--- time left needs to be recorded as highscore 
-// add time reduction function for incorrect answers
-// store the questions and corresponding correct answers 
-// add event listener for user answer selection so selection can be stored on the local storage
-// creat a function to compare the user selection with the correct answer for that question
-// use for loops to go through question and answer arrays
-// stop the quiz once question array is complete or if the timer is === 0
-// once the game is over user can save their score attached with their initials to be stored on the local storage.
 
-let startBtn = document.querySelector(".start-btn");
+let startBtn = document.querySelector("#start-btn");
 let quizTimer = document.querySelector(".quiz-timer");
 let quizArea = document.querySelector(".quiz-area");
 let questionDisplay = document.querySelector("#question");
@@ -36,15 +29,12 @@ let saveBtn = document.querySelector("#save")
 quizArea.setAttribute("style", "visibility: hidden");
 scoreEntry.setAttribute("style", "visibility: hidden");
 
-let correctCount = 0;
-let incorrectCount = 0;
 let highscore;
 let timer;
 let timerCount;
 
 let currentQuestion = {};
 let availableQuestions = [];
-// let questionIndex = Math.floor(Math.random() * availableQuestions.length);
 let questionIndex = 0;
 
 // questions array 
@@ -92,6 +82,7 @@ function startQuiz() {
     startBtn.disabled = true;
     availableQuestions = [...questionsArray];
     quizArea.setAttribute("style", "visibility: visible");
+    scoreEntry.setAttribute("style", "visibility: hidden");
     renderQuiz();
     startTimer();
 };
@@ -101,7 +92,7 @@ function startTimer() {
     timer = setInterval(function() {
       timerCount--;
       quizTimer.textContent = "Time left: " + timerCount;
-      if (timerCount === 0) {
+      if (timerCount <= 0) {
         isDone = true
         clearInterval(timer)
         endQuiz()
@@ -138,7 +129,10 @@ function renderQuiz() {
     }
 };
 
+// Checks answer, increases scores for correct/incorrect, changes to next question or reduces time depending on answer.
 function checkAnswer() {
+    let correctCount = 1;
+    let incorrectCount = 1;
     answerDisplay.addEventListener("click", function(event) {
         let element = event.target;
 
@@ -150,9 +144,6 @@ function checkAnswer() {
             if (answerValue === "true"){
                 alert("correct")
                 questionIndex++
-                // if (questionIndex > 4) {
-                //     questionIndex = 0
-                // }
                 questionDisplay.innerText = currentQuestion.question 
                 console.log(currentQuestion.question)
                 answerDisplay.textContent = "";
@@ -178,7 +169,7 @@ function endQuiz(){
     quizArea.setAttribute("style", "visibility: hidden");
     alert("Quiz Completed!") 
     scoreEntry.setAttribute("style", "visibility: visible");
-    if (timerCount >= 0) {
+    if (timerCount > 0) {
         if (isDone && timerCount > 0) {
             timerCount = highscore 
             console.log(highscore)
@@ -188,28 +179,11 @@ function endQuiz(){
     return;
 };
 
-// function to handle local storage 
-
-function saveScore() {
-  let userName = {
-    comment: comment.value.trim()
-  };
-  localStorage.setItem("userName", JSON.stringify(userName));
-};
-
-function renderScore() {
-    // Use JSON.parse() to convert text to JavaScript object
-    let lastUser = JSON.parse(localStorage.getItem("userName"));
-    // Check if data is returned, if not exit out of the function
-    if (userName !== null) {
-    document.getElementById("saved-name").innerHTML = lastUser.userName;
-    document.getElementById("saved-score").innerHTML = lastUser.highscore;
-    document.getElementById("saved-correct").innerHTML = lastUser.correctCount;
-    document.getElementById("saved-incorrect").innerHTML = lastUser.incorrectCount;
-    } else {
-      return;
-    }
-}
-
 startBtn.addEventListener("click", startQuiz);
-saveBtn.addEventListener("click", saveScore());
+
+// function to handle local storage
+saveBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    let userName = document.querySelector("#msg").value.trim();
+    localStorage.setItem("Name", JSON.stringify(userName));
+});
